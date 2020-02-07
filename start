@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Set root directory
+tw_root_dir=$(dirname "${0}")
+
+. "${tw_root_dir}/lib"
+. "${tw_root_dir}/tasks"
+
+clear
+
+while true
+do
+    tw_menu_title "Please select a task to perform:"
+    tw_menu_option "1" "Option 1"
+    tw_menu_option "2" "Option 2"
+    tw_menu_option "3" "Option 3"
+    tw_menu_option "q" "Quit"
+    tw_prompt_for_character "Make a selection..." tw_temp
+    
+    case "${tw_temp}" in
+        1)
+            tw_log "Option 1 selected!"
+            ;;
+
+        2)
+            tw_log "Option 2 selected!"
+            ;;
+
+        3)
+            tw_log "Option 3 selected!"
+            ;;
+            
+        q | Q)
+            clear
+            exit 0
+            ;;
+
+        *)
+            tw_error "Invalid selection!"
+            ;;
+    esac
+    
+    tw_pause "Press any key to continue..."
+    clear
+done

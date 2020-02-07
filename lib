@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+tw_string_prompt_color_start="\033[1;34m"
+tw_string_prompt_color_end="\033[0m"
+
+tw_string_log_color_start="\033[1;33m"
+tw_string_log_color_end="\033[0m"
+
+tw_string_label_color_start="\033[1;32m"
+tw_string_label_color_end="\033[0m"
+
+tw_string_error_color_start="\033[1;31m"
+tw_string_error_color_end="\033[0m"
+
+tw_label="${tw_string_label_color_start}TWINER: ${tw_string_label_color_end}"
+
+# Function to log text
+tw_log () {
+    echo -e "${tw_label}${tw_string_log_color_start}${1}${tw_string_log_color_end}"
+}
+
+# Function to log a menu title
+tw_menu_title () {
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+}
+
+# Function to log a menu item
+tw_menu_option () {
+    echo -e "${tw_string_prompt_color_start}[${1}]: ${2}${tw_string_prompt_color_end}"
+}
+
+# Function to prompt for a value
+tw_prompt () {
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+    read -p "> " $2
+}
+
+# Function to prompt for a character
+tw_prompt_for_character () {
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+    read -n1 -r -p "> " $2
+    echo ""
+}
+
+# Function to pause for a keypress
+tw_pause () {
+    tw_prompt_for_character "$1" tw_temp
+}
+
+# Function to prompt for a confirmation
+tw_confirm () {
+    tw_prompt_for_character "$1 (y/n) " tw_temp
+
+    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
+        $2
+    else
+        if [ "$3" ]; then
+            tw_log "$3"
+        fi
+    fi
+}
+
+# Function to load a script after a confirmation
+tw_confirm_and_source () {
+    tw_prompt_for_character "$1 (y/n) " tw_temp
+
+    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
+        . $2
+    else
+        if [ "$3" ]; then
+            tw_log "$3"
+        fi
+    fi
+}
+
+# Function to load a script after a confirmation else the other
+tw_confirm_and_source_else () {
+    tw_prompt_for_character "$1 (y/n) " tw_temp
+
+    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
+        . $2
+    else
+        . $3
+    fi
+}
+
+# Function to throw an error
+tw_error () {
+    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${1}${pe_string_error_color_end}"
+}
+
+# Function to abort with exit-code 0
+tw_abort () {
+    tw_error "Aborting..."
+    exit 0
+}
+
+# Function to abort setup for an arbitary reason
+tw_abort_because () {
+    tw_error "${1}"
+    tw_abort
+}

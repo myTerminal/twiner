@@ -1,3 +1,34 @@
 #!/usr/bin/env bash
 
-# TODO: Define tasks
+tw_task_set_hostname () {
+    tw_pause "'Set hostname' selected. Press any key to proceed..."
+
+    tw_log "Current hostname is '${tw_temp}'"
+
+    tw_prompt "Enter a new hostname:" tw_temp
+    tw_execute "hostnamectl set-hostname ${tw_temp}"
+
+    tw_handle_last_command_status "$?" \
+                                  "Hostname set to '${HOSTNAME}'" \
+                                  "Hostname could not be set!"
+}
+
+tw_task_create_users () {
+    echo "Not implemented: Create users"
+}
+
+tw_task_change_user_shell () {
+    echo "Not implemented: Change user shell"
+}
+
+tw_task_generate_ssh_key () {
+    echo "Not implemented: Generate SSH key"
+}
+
+tw_task_setup_gui () {
+    echo "Not implemented: Setup GUI"
+}
+
+tw_task_add_additional_software_sources () {
+    echo "Not implemented: Add additional software sources"
+}

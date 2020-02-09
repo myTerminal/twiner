@@ -100,3 +100,21 @@ tw_abort_because () {
     tw_error "${1}"
     tw_abort
 }
+
+# Function to execute commands
+tw_execute () {
+    if [ "${tw_debug_mode}" = "true" ]; then
+        tw_log "[Debug, executing]: ${1}"
+    else
+        $@
+    fi
+}
+
+# Function to handle last commands success/failure
+tw_handle_last_command_status () {
+    if [ "${1}" -eq "0" ]; then
+        tw_log "${2}"
+    else
+        tw_error "${3}"
+    fi
+}

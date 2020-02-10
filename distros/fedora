@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+tw_task_fedora_add_additional_software_sources () {
+    tw_error "Not implemented: Setting up GUI on Fedora!"
+}
+
+tw_task_fedora_setup_gui () {
+    tw_error "Not implemented: Setting up GUI on Fedora!"
+}

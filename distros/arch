@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+tw_task_arch_add_additional_software_sources () {
+    tw_error "Not implemented: Setting up GUI on Arch!"
+}
+
+tw_task_arch_setup_gui () {
+    tw_error "Not implemented: Setting up GUI on Arch!"
+}

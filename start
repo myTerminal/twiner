@@ -5,6 +5,9 @@ tw_root_dir=$(dirname "${0}")
 
 . "${tw_root_dir}/lib"
 . "${tw_root_dir}/tasks"
+. "${tw_root_dir}/distros/debian"
+. "${tw_root_dir}/distros/fedora"
+. "${tw_root_dir}/distros/arch"
 
 if [ "${1}" = "debug" ]; then
     tw_debug_mode=true

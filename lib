@@ -86,7 +86,7 @@ tw_confirm_and_source_else () {
 
 # Function to throw an error
 tw_error () {
-    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${1}${pe_string_error_color_end}"
+    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${1}${tw_string_error_color_end}"
 }
 
 # Function to abort with exit-code 0

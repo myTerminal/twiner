@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
 
 tw_task_arch_add_additional_software_sources () {
-    tw_error "Not implemented: Setting up GUI on Arch!"
+    tw_log "Updating all packages..."
+    tw_execute "sudo pacman -Syu --noconfirm"
+
+    tw_log "Installing git..."
+    tw_execute "sudo pacman -S git --noconfirm"
+
+    tw_log "Installing yay for AUR packages..."
+    tw_execute "mkdir temp"
+    tw_execute "git clone https://aur.archlinux.org/yay.git ./temp/yay"
+    tw_execute "cd ./temp/yay"
+    tw_execute "makepkg -si --noconfirm"
+    tw_execute "cd ../../"
+    tw_execute "rm -rf ./temp"
+
+    tw_log "You may now use 'yay' to install packages from AUR"
 }
 
 tw_task_arch_setup_gui () {

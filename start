@@ -22,8 +22,8 @@ do
     tw_menu_option "2" "Create users"
     tw_menu_option "3" "Change user shell"
     tw_menu_option "4" "Generate SSH key"
-    tw_menu_option "5" "Setup GUI"
-    tw_menu_option "6" "Add additional software sources"
+    tw_menu_option "5" "Add additional software sources"
+    tw_menu_option "6" "Setup GUI"
     tw_menu_option "q" "Quit"
 
     tw_prompt_for_character "Make a selection..." tw_temp
@@ -47,11 +47,11 @@ do
             ;;
 
         5)
-            tw_task_setup_gui
+            tw_task_add_additional_software_sources
             ;;
 
         6)
-            tw_task_add_additional_software_sources
+            tw_task_setup_gui
             ;;
 
         q | Q)

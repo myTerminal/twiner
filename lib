@@ -110,6 +110,19 @@ tw_execute () {
     fi
 }
 
+# Function to execute the right function based on platform
+tw_execute_based_on_platform () {
+    if [ $(command -v apt) ]; then
+        $1
+    elif [ $(command -v dnf) ]; then
+        $2
+    elif [ $(command -v pacman) ]; then
+        $3
+    else
+        tw_abort_because "An unknown Linux distribution found!"
+    fi
+}
+
 # Function to handle last commands success/failure
 tw_handle_last_command_status () {
     if [ "${1}" -eq "0" ]; then

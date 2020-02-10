@@ -22,7 +22,7 @@ tw_task_create_users () {
 
     cat /etc/shells
     tw_prompt "Select the default shell for the user (choose an option from the list or leave blank to use the default):" tw_temp
-    if [ "$tw_temp" ]; then
+    if [ "${tw_temp}" ]; then
         tw_temp_useradd_command="${tw_temp_useradd_command} -s ${tw_temp}"
     fi
 
@@ -36,7 +36,23 @@ tw_task_create_users () {
 }
 
 tw_task_change_user_shell () {
-    echo "Not implemented: Change user shell"
+    local tw_temp_chsh_command="chsh"
+
+    tw_prompt "Enter the username to change the shell for (default: ${USER}):" tw_temp_username
+
+    cat /etc/shells
+    tw_prompt "Select a shell from the above list:" tw_temp
+    tw_temp_chsh_command="${tw_temp_chsh_command} -s ${tw_temp}"
+
+    if [ "${tw_temp_username}" ]; then
+        tw_temp_chsh_command="${tw_temp_chsh_command} ${tw_temp_username}"
+    fi
+
+    tw_execute "${tw_temp_chsh_command}"
+
+    tw_handle_last_command_status "$?" \
+                                  "Shell changed to '${tw_temp}'" \
+                                  "Shell could not be changed!"
 }
 
 tw_task_generate_ssh_key () {

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 tw_task_set_hostname () {
-    tw_pause "'Set hostname' selected. Press any key to proceed..."
-
     tw_log "Current hostname is '${tw_temp}'"
 
     tw_prompt "Enter a new hostname:" tw_temp
@@ -14,7 +12,27 @@ tw_task_set_hostname () {
 }
 
 tw_task_create_users () {
-    echo "Not implemented: Create users"
+    local tw_temp_useradd_command="sudo useradd"
+
+    tw_prompt "Enter a username:" tw_temp_username
+    tw_temp_useradd_command="${tw_temp_useradd_command} ${tw_temp_username} -m -g users"
+
+    tw_prompt "Enter the full name of the user:" tw_temp
+    tw_temp_useradd_command="${tw_temp_useradd_command} -c ${tw_temp}"
+
+    cat /etc/shells
+    tw_prompt "Select the default shell for the user (choose an option from the list or leave blank to use the default):" tw_temp
+    if [ "$tw_temp" ]; then
+        tw_temp_useradd_command="${tw_temp_useradd_command} -s ${tw_temp}"
+    fi
+
+    tw_execute "${tw_temp_useradd_command}"
+
+    tw_handle_last_command_status "$?" \
+                                  "User '${tw_temp_username}' successfully created!" \
+                                  "User could not be created!"
+
+    tw_execute "sudo passwd ${tw_temp_username}"
 }
 
 tw_task_change_user_shell () {

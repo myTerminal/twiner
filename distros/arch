@@ -19,5 +19,47 @@ tw_task_arch_add_additional_software_sources () {
 }
 
 tw_task_arch_setup_gui () {
-    tw_error "Not implemented: Setting up GUI on Arch!"
+    tw_log "Installing display server..."
+    tw_execute "sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm"
+
+    tw_log "Installing graphics driver(s)..."
+    tw_menu_title "Please choose your graphics card:"
+    tw_menu_option "1" "AMD"
+    tw_menu_option "2" "Intel"
+    tw_menu_option "3" "Nvidia"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        1)
+            graphics_driver="xf86-video-amdgpu"
+            ;;
+
+        2)
+            graphics_driver="xf86-video-intel"
+            ;;
+
+        3)
+            graphics_driver="xf86-video-nouveau"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with vesa driver..."
+            graphics_driver="xf86-video-vesa"
+            ;;
+    esac
+
+    tw_execute "sudo pacman -S ${graphics_driver} --noconfirm"
+
+    tw_log "Installing a display manager..."
+    tw_execute "sudo pacman -S sddm --noconfirm"
+
+    tw_log "Activating display manager service..."
+    tw_execute "sudo systemctl disable display-manager.service"
+    tw_execute "sudo systemctl enable sddm"
+
+    # TODO: Implement installing a desktop environment
+    tw_log "Installing a desktop environment..."
+    tw_error "Not implemented: Installing a desktop environment on Arch!"
+
+    tw_log "Please reboot the system to use the GUI mode"
 }

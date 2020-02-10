@@ -58,7 +58,7 @@ tw_task_change_user_shell () {
 tw_task_generate_ssh_key () {
     tw_prompt "Enter a comment (could be your email address) for the key:" tw_temp
 
-    tw_execute "ssh-keygen -t rsa -b 4096 -C \"${tw_temp}\""
+    tw_execute "ssh-keygen -t rsa -b 4096 -C ${tw_temp}"
 }
 
 tw_task_add_additional_software_sources () {

@@ -7,3 +7,7 @@ tw_task_fedora_add_additional_software_sources () {
 tw_task_fedora_setup_gui () {
     tw_error "Not implemented: Setting up GUI on Fedora!"
 }
+
+tw_task_fedora_install_desktop_environment () {
+    tw_error "Not implemented: Installing desktop environment on Fedora!"
+}

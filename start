@@ -24,6 +24,7 @@ do
     tw_menu_option "4" "Generate SSH key"
     tw_menu_option "5" "Add additional software sources"
     tw_menu_option "6" "Setup GUI"
+    tw_menu_option "7" "Install desktop environment"
     tw_menu_option "q" "Quit"
 
     tw_prompt_for_character "Make a selection..." tw_temp
@@ -52,6 +53,10 @@ do
 
         6)
             tw_task_setup_gui
+            ;;
+
+        7)
+            tw_task_install_desktop_environment
             ;;
 
         q | Q)

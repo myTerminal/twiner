@@ -58,8 +58,11 @@ tw_task_arch_setup_gui () {
     tw_execute "sudo systemctl enable sddm"
 
     # TODO: Implement installing a desktop environment
-    tw_log "Installing a desktop environment..."
-    tw_error "Not implemented: Installing a desktop environment on Arch!"
+    tw_task_arch_install_desktop_environment
 
     tw_log "Please reboot the system to use the GUI mode"
+}
+
+tw_task_arch_install_desktop_environment () {
+    tw_error "Not implemented: Installing desktop environment on Arch!"
 }

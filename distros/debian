@@ -7,3 +7,7 @@ tw_task_debian_add_additional_software_sources () {
 tw_task_debian_setup_gui () {
     tw_error "Not implemented: Setting up GUI on Debian!"
 }
+
+tw_task_debian_install_desktop_environment () {
+    tw_error "Not implemented: Installing desktop environment on Debian!"
+}

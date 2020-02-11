@@ -52,7 +52,7 @@ tw_confirm () {
     tw_prompt_for_character "$1 (y/n) " tw_temp
 
     if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
-        $2
+        tw_execute $2
     else
         if [ "$3" ]; then
             tw_log "$3"

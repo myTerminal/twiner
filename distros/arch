@@ -57,12 +57,85 @@ tw_task_arch_setup_gui () {
     tw_execute "sudo systemctl disable display-manager.service"
     tw_execute "sudo systemctl enable sddm"
 
-    # TODO: Implement installing a desktop environment
+    tw_log "Installing a desktop environment..."
     tw_task_arch_install_desktop_environment
 
     tw_log "Please reboot the system to use the GUI mode"
+    tw_confirm "Reboot now?" \
+               "sudo reboot 0" \
+               "Reboot skipped."
 }
 
 tw_task_arch_install_desktop_environment () {
-    tw_error "Not implemented: Installing desktop environment on Arch!"
+    tw_menu_title "Please select a desktop environment:"
+    tw_menu_option "k" "KDE Plasma"
+    tw_menu_option "g" "Gnome"
+    tw_menu_option "c" "Cinnamon"
+    tw_menu_option "b" "Budgie"
+    tw_menu_option "m" "MATE"
+    tw_menu_option "x" "XFCE"
+    tw_menu_option "l" "LXDE"
+    tw_menu_option "q" "LXQT"
+    tw_menu_option "d" "Deepin"
+    tw_menu_option "p" "Pantheon"
+    tw_menu_option "e" "Enlightenment"
+    tw_menu_option "i" "i3"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        k)
+            desktop_environment_packages="plasma kde-applications"
+            ;;
+
+        g)
+            desktop_environment_packages="gnome gnome-extra"
+            ;;
+
+        c)
+            desktop_environment_packages="cinnamon"
+            ;;
+
+        b)
+            desktop_environment_packages="budgie-desktop budgie-extras"
+            ;;
+
+        m)
+            desktop_environment_packages="mate mate-extra"
+            ;;
+
+        x)
+            desktop_environment_packages="xfce4 xfce4-goodies"
+            ;;
+
+        l)
+            desktop_environment_packages="lxde"
+            ;;
+
+        q)
+            desktop_environment_packages="lxqt"
+            ;;
+
+        d)
+            desktop_environment_packages="deepin deepin-extra"
+            ;;
+
+        p)
+            desktop_environment_packages="pantheon"
+            ;;
+
+        e)
+            desktop_environment_packages="enlightenment"
+            ;;
+
+        i)
+            desktop_environment_packages="i3 dmenu"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with KDE plasma..."
+            desktop_environment_packages="plasma kde-applications"
+            ;;
+    esac
+
+    tw_execute "sudo pacman -S ${desktop_environment_packages} --noconfirm"
 }

@@ -107,9 +107,9 @@ tw_execute () {
         tw_log "[Simulate, executing]: ${1}"
     elif [ "${tw_mode}" = "debug" ]; then
         tw_log "[Debug, executing]: ${1}"
-        "${@}"
+        ${@}
     else
-        "${@}"
+        ${@}
     fi
 }
 

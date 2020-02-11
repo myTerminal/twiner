@@ -6,7 +6,7 @@ tw_task_set_hostname () {
     tw_prompt "Enter a new hostname:" tw_temp
     tw_execute "hostnamectl set-hostname ${tw_temp}"
 
-    tw_handle_last_command_status "$?" \
+    tw_handle_last_command_status "${?}" \
                                   "Hostname set to '${HOSTNAME}'" \
                                   "Hostname could not be set!"
 }
@@ -28,7 +28,7 @@ tw_task_create_users () {
 
     tw_execute "${tw_temp_useradd_command}"
 
-    tw_handle_last_command_status "$?" \
+    tw_handle_last_command_status "${?}" \
                                   "User '${tw_temp_username}' successfully created!" \
                                   "User could not be created!"
 
@@ -50,7 +50,7 @@ tw_task_change_user_shell () {
 
     tw_execute "${tw_temp_chsh_command}"
 
-    tw_handle_last_command_status "$?" \
+    tw_handle_last_command_status "${?}" \
                                   "Shell changed to '${tw_temp}'" \
                                   "Shell could not be changed!"
 }

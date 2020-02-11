@@ -32,55 +32,55 @@ tw_menu_option () {
 # Function to prompt for a value
 tw_prompt () {
     echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
-    read -p "> " $2
+    read -p "> " ${2}
 }
 
 # Function to prompt for a character
 tw_prompt_for_character () {
     echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
-    read -n1 -r -p "> " $2
+    read -n1 -r -p "> " "${2}"
     echo ""
 }
 
 # Function to pause for a keypress
 tw_pause () {
-    tw_prompt_for_character "$1" tw_temp
+    tw_prompt_for_character "${1}" tw_temp
 }
 
 # Function to prompt for a confirmation
 tw_confirm () {
-    tw_prompt_for_character "$1 (y/n) " tw_temp
+    tw_prompt_for_character "${1} (y/n) " tw_temp
 
-    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
-        tw_execute $2
+    if [ "${tw_temp}" == "y" ] || [ "${tw_temp}" == "Y" ]; then
+        tw_execute "${2}"
     else
-        if [ "$3" ]; then
-            tw_log "$3"
+        if [ "${3}" ]; then
+            tw_log "${3}"
         fi
     fi
 }
 
 # Function to load a script after a confirmation
 tw_confirm_and_source () {
-    tw_prompt_for_character "$1 (y/n) " tw_temp
+    tw_prompt_for_character "${1} (y/n) " tw_temp
 
-    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
-        . $2
+    if [ "${tw_temp}" == "y" ] || [ "${tw_temp}" == "Y" ]; then
+        . "${2}"
     else
-        if [ "$3" ]; then
-            tw_log "$3"
+        if [ "${3}" ]; then
+            tw_log "${3}"
         fi
     fi
 }
 
 # Function to load a script after a confirmation else the other
 tw_confirm_and_source_else () {
-    tw_prompt_for_character "$1 (y/n) " tw_temp
+    tw_prompt_for_character "${1} (y/n) " tw_temp
 
-    if [ "$tw_temp" == "y" ] || [ "$tw_temp" == "Y" ]; then
-        . $2
+    if [ "${tw_temp}" == "y" ] || [ "${tw_temp}" == "Y" ]; then
+        . "${2}"
     else
-        . $3
+        . "${3}"
     fi
 }
 
@@ -106,18 +106,18 @@ tw_execute () {
     if [ "${tw_debug_mode}" = "true" ]; then
         tw_log "[Debug, executing]: ${1}"
     else
-        $@
+        "${@}"
     fi
 }
 
 # Function to execute the right function based on platform
 tw_execute_based_on_platform () {
     if [ $(command -v apt) ]; then
-        $1
+        "${1}"
     elif [ $(command -v dnf) ]; then
-        $2
+        "${2}"
     elif [ $(command -v pacman) ]; then
-        $3
+        "${3}"
     else
         tw_abort_because "An unknown Linux distribution found!"
     fi

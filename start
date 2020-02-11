@@ -9,9 +9,7 @@ tw_root_dir=$(dirname "${0}")
 . "${tw_root_dir}/distros/fedora"
 . "${tw_root_dir}/distros/arch"
 
-if [ "${1}" = "debug" ]; then
-    tw_debug_mode=true
-fi
+tw_mode="${1}"
 
 clear
 

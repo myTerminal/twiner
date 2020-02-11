@@ -103,8 +103,11 @@ tw_abort_because () {
 
 # Function to execute commands
 tw_execute () {
-    if [ "${tw_debug_mode}" = "true" ]; then
+    if [ "${tw_mode}" = "simulate" ]; then
+        tw_log "[Simulate, executing]: ${1}"
+    elif [ "${tw_mode}" = "debug" ]; then
         tw_log "[Debug, executing]: ${1}"
+        "${@}"
     else
         "${@}"
     fi

@@ -1,11 +1,55 @@
 #!/usr/bin/env bash
 
 tw_task_debian_add_additional_software_sources () {
-    tw_error "Not implemented: Setting up GUI on Debian!"
+    tw_error "Not implemented: Adding additional software sources on Debian!"
 }
 
 tw_task_debian_setup_gui () {
-    tw_error "Not implemented: Setting up GUI on Debian!"
+    tw_log "Installing display server..."
+    tw_execute "sudo apt install xorg -y"
+
+    tw_log "Installing graphics driver(s)..."
+    tw_menu_title "Please choose your graphics card:"
+    tw_menu_option "1" "AMD"
+    tw_menu_option "2" "Intel"
+    tw_menu_option "3" "Nvidia"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        1)
+            graphics_driver="xserver-xorg-video-amdgpu"
+            ;;
+
+        2)
+            graphics_driver="xserver-xorg-video-intel"
+            ;;
+
+        3)
+            graphics_driver="xserver-xorg-video-nouveau"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with vesa driver..."
+            graphics_driver="xserver-xorg-video-vesa"
+            ;;
+    esac
+
+    tw_execute "sudo apt install ${graphics_driver} -y"
+
+    tw_log "Installing a display manager..."
+    tw_execute "sudo apt install sddm -y"
+
+    tw_log "Activating display manager service..."
+    tw_execute "sudo systemctl disable display-manager.service"
+    tw_execute "sudo systemctl enable sddm"
+
+    tw_log "Installing a desktop environment..."
+    tw_task_debian_install_desktop_environment
+
+    tw_log "Please reboot the system to use the GUI mode"
+    tw_confirm "Reboot now?" \
+               "sudo reboot 0" \
+               "Reboot skipped."
 }
 
 tw_task_debian_install_desktop_environment () {

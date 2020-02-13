@@ -53,5 +53,79 @@ tw_task_debian_setup_gui () {
 }
 
 tw_task_debian_install_desktop_environment () {
-    tw_error "Not implemented: Installing desktop environment on Debian!"
+    tw_menu_title "Please select a desktop environment:"
+    tw_menu_option "k" "KDE Plasma"
+    tw_menu_option "g" "Gnome"
+    tw_menu_option "c" "Cinnamon"
+    tw_menu_option "b" "Budgie"
+    tw_menu_option "m" "MATE"
+    tw_menu_option "x" "XFCE"
+    tw_menu_option "l" "LXDE"
+    tw_menu_option "q" "LXQT"
+    tw_menu_option "d" "Deepin"
+    tw_menu_option "p" "Pantheon"
+    tw_menu_option "e" "Enlightenment"
+    tw_menu_option "i" "i3"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        k)
+            desktop_environment_packages="kde-plasma-desktop"
+            ;;
+
+        g)
+            desktop_environment_packages="ubuntu-gnome-desktop"
+            ;;
+
+        c)
+            tw_execute "sudo add-apt-repository ppa:embrosyn/cinnamon -y && sudo apt update - y"
+            desktop_environment_packages="cinnamon"
+            ;;
+
+        b)
+            desktop_environment_packages="ubuntu-budgie-desktop"
+            ;;
+
+        m)
+            desktop_environment_packages="ubuntu-mate-desktop"
+            ;;
+
+        x)
+            desktop_environment_packages="xfce4"
+            ;;
+
+        l)
+            desktop_environment_packages="lxde"
+            ;;
+
+        q)
+            desktop_environment_packages="lxqt"
+            ;;
+
+        d)
+            tw_execute "sudo add-apt-repository ppa:leaeasy/dde -y && sudo apt update -y"
+            desktop_environment_packages="dde dde-file-manager"
+            ;;
+
+        p)
+            tw_execute "sudo add-apt-repository ppa:elementary-os/stable -y && sudo apt update -y"
+            desktop_environment_packages="elementary-desktop"
+            ;;
+
+        e)
+            tw_execute "sudo add-apt-repository ppa:niko2040/e19 -y && sudo apt update -y"
+            desktop_environment_packages="enlightenment terminology"
+            ;;
+
+        i)
+            desktop_environment_packages="i3"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with KDE plasma..."
+            desktop_environment_packages="kde-plasma-desktop"
+            ;;
+    esac
+
+    tw_execute "sudo apt install ${desktop_environment_packages} -y"
 }

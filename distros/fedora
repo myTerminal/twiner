@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 tw_task_fedora_add_additional_software_sources () {
-    tw_error "Not implemented: Setting up GUI on Fedora!"
+    tw_log "Installing Fusion repos..."
+    tw_execute "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+
+    tw_log "Updating all packages..."
+    tw_execute "sudo dnf update -y"
+
+    tw_log "Fusion repos have been installed!"
 }
 
 tw_task_fedora_setup_gui () {

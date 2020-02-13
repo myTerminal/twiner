@@ -2,7 +2,7 @@
 
 [![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-Configuring *YOUR* Linux made easy [under development]
+Configuring *YOUR* Linux made easy
 
 ## What is it?
 
@@ -10,7 +10,11 @@ Configuring *YOUR* Linux made easy [under development]
 
 ## Supported Platforms
 
-Even though *twiner* may work on any generic Linux system, in its current state, it contains features specifically scripted for Arch-based distros. Soon there may be support for Debian (and Ubuntu), Fedora, and more.
+Even though *twiner* may work on any generic Linux system, in its current state, it only contains scripts for the below platforms:
+
+- Arch (and Arch-based distros)
+- Fedora (and variants of Fedora)
+- Debian, Ubuntu and other members of the family
 
 ## How to use
 
@@ -41,6 +45,5 @@ To just see what commands would be run instead of actually running them, use the
 ## To-Do
 
 - Add more commonly used setup tasks
-- Implement tasks for Debian and Fedora-based distros
 - Add support for more distros
 - Provide more options for installing a display manager

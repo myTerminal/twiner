@@ -2,7 +2,8 @@
 
 tw_task_debian_add_additional_software_sources () {
     tw_log "Updating and upgrading system..."
-    tw_execute "sudo apt update -y && sudo apt upgrade -y"
+    tw_execute "sudo apt update -y"
+    tw_execute "sudo apt upgrade -y"
 
     tw_log "System is now updated!"
 }
@@ -81,7 +82,8 @@ tw_task_debian_install_desktop_environment () {
             ;;
 
         c)
-            tw_execute "sudo add-apt-repository ppa:embrosyn/cinnamon -y && sudo apt update - y"
+            tw_execute "sudo add-apt-repository ppa:embrosyn/cinnamon -y"
+            tw_execute "sudo apt update - y"
             desktop_environment_packages="cinnamon"
             ;;
 
@@ -106,17 +108,20 @@ tw_task_debian_install_desktop_environment () {
             ;;
 
         d)
-            tw_execute "sudo add-apt-repository ppa:leaeasy/dde -y && sudo apt update -y"
+            tw_execute "sudo add-apt-repository ppa:leaeasy/dde -y"
+            tw_execute "sudo apt update -y"
             desktop_environment_packages="dde dde-file-manager"
             ;;
 
         p)
-            tw_execute "sudo add-apt-repository ppa:elementary-os/stable -y && sudo apt update -y"
+            tw_execute "sudo add-apt-repository ppa:elementary-os/stable -y"
+            tw_execute "sudo apt update -y"
             desktop_environment_packages="elementary-desktop"
             ;;
 
         e)
-            tw_execute "sudo add-apt-repository ppa:niko2040/e19 -y && sudo apt update -y"
+            tw_execute "sudo add-apt-repository ppa:niko2040/e19 -y"
+            tw_execute "sudo apt update -y"
             desktop_environment_packages="enlightenment terminology"
             ;;
 

@@ -16,6 +16,7 @@ tw_task_fedora_setup_gui () {
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
+    tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
     tw_menu_option "1" "AMD"
     tw_menu_option "2" "Intel"
     tw_menu_option "3" "Nvidia"
@@ -34,8 +35,8 @@ tw_task_fedora_setup_gui () {
             graphics_driver="xorg-x11-drv-nouveau"
             ;;
 
-        *)
-            tw_log "Invalid option selected, proceeding with vesa driver..."
+        0 | *)
+            tw_log "Proceeding with vesa driver..."
             graphics_driver="xorg-x11-drv-vesa"
             ;;
     esac

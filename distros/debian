@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 tw_task_debian_add_additional_software_sources () {
-    tw_error "Not implemented: Adding additional software sources on Debian!"
+    tw_log "Updating and upgrading system..."
+    tw_execute "sudo apt update -y && sudo apt upgrade -y"
+
+    tw_log "System is now updated!"
 }
 
 tw_task_debian_setup_gui () {

@@ -59,5 +59,76 @@ tw_task_fedora_setup_gui () {
 }
 
 tw_task_fedora_install_desktop_environment () {
-    tw_error "Not implemented: Installing desktop environment on Fedora!"
+    tw_menu_title "Please select a desktop environment:"
+    tw_menu_option "k" "KDE Plasma"
+    tw_menu_option "g" "Gnome"
+    tw_menu_option "c" "Cinnamon"
+    tw_menu_option "b" "Budgie"
+    tw_menu_option "m" "MATE"
+    tw_menu_option "x" "XFCE"
+    tw_menu_option "l" "LXDE"
+    tw_menu_option "q" "LXQT"
+    tw_menu_option "d" "Deepin"
+    tw_menu_option "p" "Pantheon"
+    tw_menu_option "e" "Enlightenment"
+    tw_menu_option "i" "i3"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        k)
+            desktop_environment_packages="group install \"KDE Plasma Workspaces\""
+            ;;
+
+        g)
+            desktop_environment_packages="group install \"GNOME Desktop Environment\""
+            ;;
+
+        c)
+            desktop_environment_packages="group install \"Cinnamon Desktop\""
+            ;;
+
+        b)
+            tw_execute "sudo dnf copr enable alunux/budgie-desktop-git -y"
+            desktop_environment_packages="budgie-desktop"
+            ;;
+
+        m)
+            desktop_environment_packages="group install \"MATE Desktop\""
+            ;;
+
+        x)
+            desktop_environment_packages="group install \"Xfce Desktop\""
+            ;;
+
+        l)
+            desktop_environment_packages="group install \"LXDE Desktop\""
+            ;;
+
+        q)
+            desktop_environment_packages="install @lxqt"
+            ;;
+
+        d)
+            desktop_environment_packages="group install \"Deepin Desktop\""
+            ;;
+
+        p)
+            desktop_environment_packages="group install \"pantheon desktop\""
+            ;;
+
+        e)
+            desktop_environment_packages="install enlightenment"
+            ;;
+
+        i)
+            desktop_environment_packages="install i3 i3status i3lock"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with KDE plasma..."
+            desktop_environment_packages="group install \"KDE Plasma Workspaces\""
+            ;;
+    esac
+
+    tw_execute "sudo dnf ${desktop_environment_packages} -y"
 }

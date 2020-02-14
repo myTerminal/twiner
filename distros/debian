@@ -15,21 +15,21 @@ tw_task_debian_setup_gui () {
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
     tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
-    tw_menu_option "1" "AMD"
-    tw_menu_option "2" "Intel"
-    tw_menu_option "3" "Nvidia"
+    tw_menu_option "a" "AMD"
+    tw_menu_option "i" "Intel"
+    tw_menu_option "n" "Nvidia"
     tw_prompt_for_character "" tw_temp
 
     case "${tw_temp}" in
-        1)
+        a | A)
             graphics_driver="xserver-xorg-video-amdgpu"
             ;;
 
-        2)
+        i | I)
             graphics_driver="xserver-xorg-video-intel"
             ;;
 
-        3)
+        n | N)
             graphics_driver="xserver-xorg-video-nouveau"
             ;;
 
@@ -74,59 +74,59 @@ tw_task_debian_install_desktop_environment () {
     tw_prompt_for_character "" tw_temp
 
     case "${tw_temp}" in
-        k)
+        k | K)
             desktop_environment_packages="kde-plasma-desktop"
             ;;
 
-        g)
+        g | G)
             desktop_environment_packages="ubuntu-gnome-desktop"
             ;;
 
-        c)
+        c | C)
             tw_execute "sudo add-apt-repository ppa:embrosyn/cinnamon -y"
             tw_execute "sudo apt update - y"
             desktop_environment_packages="cinnamon"
             ;;
 
-        b)
+        b | B)
             desktop_environment_packages="ubuntu-budgie-desktop"
             ;;
 
-        m)
+        m | M)
             desktop_environment_packages="ubuntu-mate-desktop"
             ;;
 
-        x)
+        x | X)
             desktop_environment_packages="xfce4"
             ;;
 
-        l)
+        l | L)
             desktop_environment_packages="lxde"
             ;;
 
-        q)
+        q | Q)
             desktop_environment_packages="lxqt"
             ;;
 
-        d)
+        d | D)
             tw_execute "sudo add-apt-repository ppa:leaeasy/dde -y"
             tw_execute "sudo apt update -y"
             desktop_environment_packages="dde dde-file-manager"
             ;;
 
-        p)
+        p | P)
             tw_execute "sudo add-apt-repository ppa:elementary-os/stable -y"
             tw_execute "sudo apt update -y"
             desktop_environment_packages="elementary-desktop"
             ;;
 
-        e)
+        e | E)
             tw_execute "sudo add-apt-repository ppa:niko2040/e19 -y"
             tw_execute "sudo apt update -y"
             desktop_environment_packages="enlightenment terminology"
             ;;
 
-        i)
+        i | I)
             desktop_environment_packages="i3"
             ;;
 

@@ -17,21 +17,21 @@ tw_task_fedora_setup_gui () {
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
     tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
-    tw_menu_option "1" "AMD"
-    tw_menu_option "2" "Intel"
-    tw_menu_option "3" "Nvidia"
+    tw_menu_option "a" "AMD"
+    tw_menu_option "i" "Intel"
+    tw_menu_option "n" "Nvidia"
     tw_prompt_for_character "" tw_temp
 
     case "${tw_temp}" in
-        1)
+        a | A)
             graphics_driver="xorg-x11-drv-amdgpu"
             ;;
 
-        2)
+        i | I)
             graphics_driver="xorg-x11-drv-intel"
             ;;
 
-        3)
+        n | N)
             graphics_driver="xorg-x11-drv-nouveau"
             ;;
 
@@ -76,52 +76,52 @@ tw_task_fedora_install_desktop_environment () {
     tw_prompt_for_character "" tw_temp
 
     case "${tw_temp}" in
-        k)
+        k | K)
             desktop_environment_packages="group install \"KDE Plasma Workspaces\""
             ;;
 
-        g)
+        g | G)
             desktop_environment_packages="group install \"GNOME Desktop Environment\""
             ;;
 
-        c)
+        c | C)
             desktop_environment_packages="group install \"Cinnamon Desktop\""
             ;;
 
-        b)
+        b | B)
             tw_execute "sudo dnf copr enable alunux/budgie-desktop-git -y"
             desktop_environment_packages="budgie-desktop"
             ;;
 
-        m)
+        m | M)
             desktop_environment_packages="group install \"MATE Desktop\""
             ;;
 
-        x)
+        x | X)
             desktop_environment_packages="group install \"Xfce Desktop\""
             ;;
 
-        l)
+        l | L)
             desktop_environment_packages="group install \"LXDE Desktop\""
             ;;
 
-        q)
+        q | Q)
             desktop_environment_packages="install @lxqt"
             ;;
 
-        d)
+        d | D)
             desktop_environment_packages="group install \"Deepin Desktop\""
             ;;
 
-        p)
+        p | P)
             desktop_environment_packages="group install \"pantheon desktop\""
             ;;
 
-        e)
+        e | E)
             desktop_environment_packages="install enlightenment"
             ;;
 
-        i)
+        i | I)
             desktop_environment_packages="install i3 i3status i3lock"
             ;;
 

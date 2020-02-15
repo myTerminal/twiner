@@ -50,6 +50,9 @@ tw_task_fedora_setup_gui () {
     tw_execute sudo systemctl disable display-manager.service
     tw_execute sudo systemctl enable sddm
 
+    tw_log "Enabling graphical mode..."
+    tw_execute systemctl set-default graphical.target
+
     tw_log "Installing a desktop environment..."
     tw_task_fedora_install_desktop_environment
 

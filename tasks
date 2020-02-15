@@ -32,24 +32,21 @@ tw_task_create_users () {
 }
 
 tw_task_change_user_shell () {
-    local tw_temp_chsh_command="chsh"
-
-    tw_prompt "Enter the username to change the shell for (default: ${USER}):" tw_temp_username
-
     tw_log "Current active shell is '${SHELL}'"
 
+    tw_prompt "Enter the username for the user (default: ${USER}):" tw_temp_username
+
     cat /etc/shells
-    tw_prompt "Select a shell from the above list:" tw_temp
-    tw_temp_chsh_command="${tw_temp_chsh_command} -s ${tw_temp}"
+    tw_prompt "Select a shell from the above list:" tw_temp_shell
 
     if [ "${tw_temp_username}" ]; then
-        tw_temp_chsh_command="${tw_temp_chsh_command} ${tw_temp_username}"
+        tw_execute sudo usermod -s "${tw_temp_shell}" "${tw_temp_username}"
+    else
+        tw_execute sudo usermod -s "${tw_temp_shell}"
     fi
 
-    tw_execute "${tw_temp_chsh_command}"
-
     tw_handle_last_command_status "${?}" \
-                                  "Shell changed to '${tw_temp}', you may need to re-login to see the changes." \
+                                  "Shell changed to '${tw_temp_shell}', you may need to re-login to see the changes." \
                                   "Shell could not be changed!"
 }
 

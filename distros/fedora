@@ -75,19 +75,19 @@ tw_task_fedora_install_desktop_environment () {
     tw_menu_option "i" "i3"
     tw_prompt_for_character "" tw_temp
 
-    tw_install_command_action="group install"
+    tw_install_command_action="groupinstall"
 
     case "${tw_temp}" in
         k | K)
-            desktop_environment_packages="\"KDE Plasma Workspaces\""
+            desktop_environment_packages="KDE Plasma Workspaces"
             ;;
 
         g | G)
-            desktop_environment_packages="\"GNOME Desktop Environment\""
+            desktop_environment_packages="GNOME Desktop Environment"
             ;;
 
         c | C)
-            desktop_environment_packages="\"Cinnamon Desktop\""
+            desktop_environment_packages="Cinnamon Desktop"
             ;;
 
         b | B)
@@ -97,15 +97,15 @@ tw_task_fedora_install_desktop_environment () {
             ;;
 
         m | M)
-            desktop_environment_packages="\"MATE Desktop\""
+            desktop_environment_packages="MATE Desktop"
             ;;
 
         x | X)
-            desktop_environment_packages="\"Xfce Desktop\""
+            desktop_environment_packages="Xfce Desktop"
             ;;
 
         l | L)
-            desktop_environment_packages="\"LXDE Desktop\""
+            desktop_environment_packages="LXDE Desktop"
             ;;
 
         q | Q)
@@ -114,11 +114,11 @@ tw_task_fedora_install_desktop_environment () {
             ;;
 
         d | D)
-            desktop_environment_packages="\"Deepin Desktop\""
+            desktop_environment_packages="Deepin Desktop"
             ;;
 
         p | P)
-            desktop_environment_packages="\"pantheon desktop\""
+            desktop_environment_packages="pantheon desktop"
             ;;
 
         e | E)
@@ -133,7 +133,7 @@ tw_task_fedora_install_desktop_environment () {
 
         *)
             tw_log "Invalid option selected, proceeding with KDE plasma..."
-            desktop_environment_packages="\"KDE Plasma Workspaces\""
+            desktop_environment_packages="KDE Plasma Workspaces"
             ;;
     esac
 

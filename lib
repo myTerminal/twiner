@@ -52,7 +52,7 @@ tw_confirm () {
     tw_prompt_for_character "${1} (y/n) " tw_temp
 
     if [ "${tw_temp}" == "y" ] || [ "${tw_temp}" == "Y" ]; then
-        tw_execute "${2}"
+        "${2}"
     else
         if [ "${3}" ]; then
             tw_log "${3}"
@@ -133,4 +133,10 @@ tw_handle_last_command_status () {
     else
         tw_error "${3}"
     fi
+}
+
+# Function to reboot the system
+tw_reboot_now () {
+    tw_log "Rebooting..."
+    tw_execute sudo reboot
 }

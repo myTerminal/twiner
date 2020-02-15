@@ -63,7 +63,7 @@ tw_task_arch_setup_gui () {
 
     tw_log "Please reboot the system to use the GUI mode"
     tw_confirm "Reboot now?" \
-               "sudo reboot 0" \
+               tw_reboot_now \
                "Reboot skipped."
 }
 

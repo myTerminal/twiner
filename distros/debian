@@ -2,15 +2,15 @@
 
 tw_task_debian_add_additional_software_sources () {
     tw_log "Updating and upgrading system..."
-    tw_execute "sudo apt update -y"
-    tw_execute "sudo apt upgrade -y"
+    tw_execute sudo apt update -y
+    tw_execute sudo apt upgrade -y
 
     tw_log "System is now updated!"
 }
 
 tw_task_debian_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute "sudo apt install xorg -y"
+    tw_execute sudo apt install xorg -y
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
@@ -39,14 +39,14 @@ tw_task_debian_setup_gui () {
             ;;
     esac
 
-    tw_execute "sudo apt install ${graphics_driver} -y"
+    tw_execute sudo apt install "${graphics_driver}" -y
 
     tw_log "Installing a display manager..."
-    tw_execute "sudo apt install sddm -y"
+    tw_execute sudo apt install sddm -y
 
     tw_log "Activating display manager service..."
-    tw_execute "sudo systemctl disable display-manager.service"
-    tw_execute "sudo systemctl enable sddm"
+    tw_execute sudo systemctl disable display-manager.service
+    tw_execute sudo systemctl enable sddm
 
     tw_log "Installing a desktop environment..."
     tw_task_debian_install_desktop_environment
@@ -83,8 +83,8 @@ tw_task_debian_install_desktop_environment () {
             ;;
 
         c | C)
-            tw_execute "sudo add-apt-repository ppa:embrosyn/cinnamon -y"
-            tw_execute "sudo apt update - y"
+            tw_execute sudo add-apt-repository ppa:embrosyn/cinnamon -y
+            tw_execute sudo apt update -y
             desktop_environment_packages="cinnamon"
             ;;
 
@@ -109,20 +109,20 @@ tw_task_debian_install_desktop_environment () {
             ;;
 
         d | D)
-            tw_execute "sudo add-apt-repository ppa:leaeasy/dde -y"
-            tw_execute "sudo apt update -y"
+            tw_execute sudo add-apt-repository ppa:leaeasy/dde -y
+            tw_execute sudo apt update -y
             desktop_environment_packages="dde dde-file-manager"
             ;;
 
         p | P)
-            tw_execute "sudo add-apt-repository ppa:elementary-os/stable -y"
-            tw_execute "sudo apt update -y"
+            tw_execute sudo add-apt-repository ppa:elementary-os/stable -y
+            tw_execute sudo apt update -y
             desktop_environment_packages="elementary-desktop"
             ;;
 
         e | E)
-            tw_execute "sudo add-apt-repository ppa:niko2040/e19 -y"
-            tw_execute "sudo apt update -y"
+            tw_execute sudo add-apt-repository ppa:niko2040/e19 -y
+            tw_execute sudo apt update -y
             desktop_environment_packages="enlightenment terminology"
             ;;
 
@@ -136,5 +136,5 @@ tw_task_debian_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute "sudo apt install ${desktop_environment_packages} -y"
+    tw_execute sudo apt install "${desktop_environment_packages}" -y
 }

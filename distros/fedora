@@ -2,17 +2,17 @@
 
 tw_task_fedora_add_additional_software_sources () {
     tw_log "Installing Fusion repos..."
-    tw_execute "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+    tw_execute sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
     tw_log "Updating all packages..."
-    tw_execute "sudo dnf update -y"
+    tw_execute sudo dnf update -y
 
     tw_log "Fusion repos have been installed!"
 }
 
 tw_task_fedora_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute "sudo dnf install xorg-x11-server-Xorg xorg-x11-apps xorg-x11-init -y"
+    tw_execute sudo dnf install xorg-x11-server-Xorg xorg-x11-apps xorg-x11-init -y
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
@@ -41,14 +41,14 @@ tw_task_fedora_setup_gui () {
             ;;
     esac
 
-    tw_execute "sudo dnf install ${graphics_driver} -y"
+    tw_execute sudo dnf install "${graphics_driver}" -y
 
     tw_log "Installing a display manager..."
-    tw_execute "sudo dnf install sddm -y"
+    tw_execute sudo dnf install sddm -y
 
     tw_log "Activating display manager service..."
-    tw_execute "sudo systemctl disable display-manager.service"
-    tw_execute "sudo systemctl enable sddm"
+    tw_execute sudo systemctl disable display-manager.service
+    tw_execute sudo systemctl enable sddm
 
     tw_log "Installing a desktop environment..."
     tw_task_fedora_install_desktop_environment
@@ -75,61 +75,67 @@ tw_task_fedora_install_desktop_environment () {
     tw_menu_option "i" "i3"
     tw_prompt_for_character "" tw_temp
 
+    tw_install_command_action="group install"
+
     case "${tw_temp}" in
         k | K)
-            desktop_environment_packages="group install \"KDE Plasma Workspaces\""
+            desktop_environment_packages="\"KDE Plasma Workspaces\""
             ;;
 
         g | G)
-            desktop_environment_packages="group install \"GNOME Desktop Environment\""
+            desktop_environment_packages="\"GNOME Desktop Environment\""
             ;;
 
         c | C)
-            desktop_environment_packages="group install \"Cinnamon Desktop\""
+            desktop_environment_packages="\"Cinnamon Desktop\""
             ;;
 
         b | B)
-            tw_execute "sudo dnf copr enable alunux/budgie-desktop-git -y"
+            tw_execute sudo dnf copr enable alunux/budgie-desktop-git -y
+            tw_install_command_action="install"
             desktop_environment_packages="budgie-desktop"
             ;;
 
         m | M)
-            desktop_environment_packages="group install \"MATE Desktop\""
+            desktop_environment_packages="\"MATE Desktop\""
             ;;
 
         x | X)
-            desktop_environment_packages="group install \"Xfce Desktop\""
+            desktop_environment_packages="\"Xfce Desktop\""
             ;;
 
         l | L)
-            desktop_environment_packages="group install \"LXDE Desktop\""
+            desktop_environment_packages="\"LXDE Desktop\""
             ;;
 
         q | Q)
-            desktop_environment_packages="install @lxqt"
+            tw_install_command_action="install"
+            desktop_environment_packages="@lxqt"
             ;;
 
         d | D)
-            desktop_environment_packages="group install \"Deepin Desktop\""
+            desktop_environment_packages="\"Deepin Desktop\""
             ;;
 
         p | P)
-            desktop_environment_packages="group install \"pantheon desktop\""
+            desktop_environment_packages="\"pantheon desktop\""
             ;;
 
         e | E)
-            desktop_environment_packages="install enlightenment"
+            tw_install_command_action="install"
+            desktop_environment_packages="enlightenment"
             ;;
 
         i | I)
-            desktop_environment_packages="install i3 i3status i3lock"
+            tw_install_command_action="install"
+            desktop_environment_packages="i3 i3status i3lock"
             ;;
 
         *)
             tw_log "Invalid option selected, proceeding with KDE plasma..."
-            desktop_environment_packages="group install \"KDE Plasma Workspaces\""
+            desktop_environment_packages="\"KDE Plasma Workspaces\""
             ;;
     esac
 
-    tw_execute "sudo dnf ${desktop_environment_packages} -y"
+    tw_execute sudo dnf "${tw_install_command_action}" "${desktop_environment_packages}" -y
 }

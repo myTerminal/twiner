@@ -2,25 +2,25 @@
 
 tw_task_arch_add_additional_software_sources () {
     tw_log "Updating all packages..."
-    tw_execute "sudo pacman -Syu --noconfirm"
+    tw_execute sudo pacman -Syu --noconfirm
 
     tw_log "Installing git..."
-    tw_execute "sudo pacman -S git --noconfirm"
+    tw_execute sudo pacman -S git --noconfirm
 
     tw_log "Installing yay for AUR packages..."
-    tw_execute "mkdir temp"
-    tw_execute "git clone https://aur.archlinux.org/yay.git ./temp/yay"
-    tw_execute "cd ./temp/yay"
-    tw_execute "makepkg -si --noconfirm"
-    tw_execute "cd ../../"
-    tw_execute "rm -rf ./temp"
+    tw_execute mkdir temp
+    tw_execute git clone https://aur.archlinux.org/yay.git ./temp/yay
+    tw_execute cd ./temp/yay
+    tw_execute makepkg -si --noconfirm
+    tw_execute cd ../../
+    tw_execute rm -rf ./temp
 
     tw_log "You may now use 'yay' to install packages from AUR"
 }
 
 tw_task_arch_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute "sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm"
+    tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
@@ -49,14 +49,14 @@ tw_task_arch_setup_gui () {
             ;;
     esac
 
-    tw_execute "sudo pacman -S ${graphics_driver} --noconfirm"
+    tw_execute sudo pacman -S "${graphics_driver}" --noconfirm
 
     tw_log "Installing a display manager..."
-    tw_execute "sudo pacman -S sddm --noconfirm"
+    tw_execute sudo pacman -S sddm --noconfirm
 
     tw_log "Activating display manager service..."
-    tw_execute "sudo systemctl disable display-manager.service"
-    tw_execute "sudo systemctl enable sddm"
+    tw_execute sudo systemctl disable display-manager.service
+    tw_execute sudo systemctl enable sddm
 
     tw_log "Installing a desktop environment..."
     tw_task_arch_install_desktop_environment
@@ -138,5 +138,5 @@ tw_task_arch_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute "sudo pacman -S ${desktop_environment_packages} --noconfirm"
+    tw_execute sudo pacman -S "${desktop_environment_packages}" --noconfirm
 }

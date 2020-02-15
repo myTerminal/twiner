@@ -16,7 +16,7 @@ tw_label="${tw_string_label_color_start}TWINER: ${tw_string_label_color_end}"
 
 # Function to log text
 tw_log () {
-    echo -e "${tw_label}${tw_string_log_color_start}${1}${tw_string_log_color_end}"
+    echo -e "${tw_label}${tw_string_log_color_start}${@}${tw_string_log_color_end}"
 }
 
 # Function to log a menu title
@@ -86,7 +86,7 @@ tw_confirm_and_source_else () {
 
 # Function to throw an error
 tw_error () {
-    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${1}${tw_string_error_color_end}"
+    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${@}${tw_string_error_color_end}"
 }
 
 # Function to abort with exit-code 0
@@ -97,20 +97,20 @@ tw_abort () {
 
 # Function to abort setup for an arbitary reason
 tw_abort_because () {
-    tw_error "${1}"
+    tw_error "${@}"
     tw_abort
 }
 
 # Function to execute commands
 tw_execute () {
     if [ "${tw_mode}" = "simulate" ]; then
-        tw_log "[Simulate, executing]: ${1}"
+        tw_log "<Executing> ${@}"
+        return;
     elif [ "${tw_mode}" = "debug" ]; then
-        tw_log "[Debug, executing]: ${1}"
-        ${@}
-    else
-        ${@}
+        tw_log "<Executing> ${@}"
     fi
+
+    "${@}"
 }
 
 # Function to execute the right function based on platform

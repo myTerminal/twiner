@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Function to add additional software repos in Arch
 tw_task_arch_add_additional_software_sources () {
     tw_log "Updating all packages..."
     tw_execute sudo pacman -Syu --noconfirm
@@ -18,6 +19,7 @@ tw_task_arch_add_additional_software_sources () {
     tw_log "You may now use 'yay' to install packages from AUR"
 }
 
+# Function to setup GUI from a CUI environment in Arch
 tw_task_arch_setup_gui () {
     tw_log "Installing display server..."
     tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
@@ -67,6 +69,7 @@ tw_task_arch_setup_gui () {
                "Reboot skipped."
 }
 
+# Function to install a desktop environment in Arch
 tw_task_arch_install_desktop_environment () {
     tw_menu_title "Please select a desktop environment:"
     tw_menu_option "k" "KDE Plasma"

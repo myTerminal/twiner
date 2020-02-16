@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+# Load tasks for individual platforms
 tw_tasks_dir="$(dirname "${BASH_SOURCE[0]}")"
-
 . "${tw_tasks_dir}/debian"
 . "${tw_tasks_dir}/fedora"
 . "${tw_tasks_dir}/arch"
 
+# Function to set hostname
 tw_task_set_hostname () {
     tw_log "Current hostname is '${HOSTNAME}'"
 
@@ -17,6 +18,7 @@ tw_task_set_hostname () {
                                   "Hostname could not be set!"
 }
 
+# Function to create a new user
 tw_task_create_users () {
     tw_prompt "Enter a username:" tw_temp_username
     tw_prompt "Enter the full name of the user:" tw_temp_full_name
@@ -37,6 +39,7 @@ tw_task_create_users () {
     tw_execute sudo passwd "${tw_temp_username}"
 }
 
+# Function to change shell of a particular user
 tw_task_change_user_shell () {
     tw_log "Current active shell is '${SHELL}'"
 
@@ -56,24 +59,28 @@ tw_task_change_user_shell () {
                                   "Shell could not be changed!"
 }
 
+# Function to generate SSH key
 tw_task_generate_ssh_key () {
     tw_prompt "Enter a comment (could be your email address) for the key:" tw_temp
 
     tw_execute ssh-keygen -t rsa -b 4096 -C "${tw_temp}"
 }
 
+# Function to add additional software repos
 tw_task_add_additional_software_sources () {
     tw_execute_based_on_platform tw_task_debian_add_additional_software_sources \
                                  tw_task_fedora_add_additional_software_sources \
                                  tw_task_arch_add_additional_software_sources
 }
 
+# Function to setup GUI from a CUI environment
 tw_task_setup_gui () {
     tw_execute_based_on_platform tw_task_debian_setup_gui \
                                  tw_task_fedora_setup_gui \
                                  tw_task_arch_setup_gui
 }
 
+# Function to install a desktop environment
 tw_task_install_desktop_environment () {
     tw_execute_based_on_platform tw_task_debian_install_desktop_environment \
                                  tw_task_fedora_install_desktop_environment \

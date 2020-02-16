@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Function to add additional software repos in Fedora
 tw_task_fedora_add_additional_software_sources () {
     tw_log "Installing Fusion repos..."
     tw_execute sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -10,6 +11,7 @@ tw_task_fedora_add_additional_software_sources () {
     tw_log "Fusion repos have been installed!"
 }
 
+# Function to setup GUI from a CUI environment in Fedora
 tw_task_fedora_setup_gui () {
     tw_log "Installing display server..."
     tw_execute sudo dnf install xorg-x11-server-Xorg xorg-x11-apps xorg-x11-init -y
@@ -62,6 +64,7 @@ tw_task_fedora_setup_gui () {
                "Reboot skipped."
 }
 
+# Function to install a desktop environment in Fedora
 tw_task_fedora_install_desktop_environment () {
     tw_menu_title "Please select a desktop environment:"
     tw_menu_option "k" "KDE Plasma"

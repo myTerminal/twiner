@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+# Set root directory
 tw_root_dir="$(dirname "${BASH_SOURCE[0]}")"
 
+# Load resources
 . "${tw_root_dir}/lib"
 . "${tw_root_dir}/tasks/all"
 
+# Set mode from argument
 tw_mode="${1}"

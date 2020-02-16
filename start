@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+# Load resources
 . "$(dirname "${BASH_SOURCE[0]}")/load" "${1}"
 
+# Display main menu
 clear
-
 while true
 do
     tw_menu_title "Please select a task to perform:"

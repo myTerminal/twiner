@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Function to add additional software repos in Debian
 tw_task_debian_add_additional_software_sources () {
     tw_log "Updating and upgrading system..."
     tw_execute sudo apt update -y
@@ -8,6 +9,7 @@ tw_task_debian_add_additional_software_sources () {
     tw_log "System is now updated!"
 }
 
+# Function to setup GUI from a CUI environment in Debian
 tw_task_debian_setup_gui () {
     tw_log "Installing display server..."
     tw_execute sudo apt install xorg -y
@@ -57,6 +59,7 @@ tw_task_debian_setup_gui () {
                "Reboot skipped."
 }
 
+# # Function to install a desktop environment in Debian
 tw_task_debian_install_desktop_environment () {
     tw_menu_title "Please select a desktop environment:"
     tw_menu_option "k" "KDE Plasma"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+tw_root_dir="$(dirname "${BASH_SOURCE[0]}")"
+
+. "${tw_root_dir}/lib"
+. "${tw_root_dir}/tasks/all"
+
+tw_mode="${1}"

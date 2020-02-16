@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 
-# Set root directory
-tw_root_dir=$(dirname "${0}")
-
-. "${tw_root_dir}/lib"
-. "${tw_root_dir}/tasks"
-. "${tw_root_dir}/distros/debian"
-. "${tw_root_dir}/distros/fedora"
-. "${tw_root_dir}/distros/arch"
-
-tw_mode="${1}"
+. "$(dirname "${BASH_SOURCE[0]}")/load" "${1}"
 
 clear
 

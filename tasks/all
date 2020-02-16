@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+tw_tasks_dir="$(dirname "${BASH_SOURCE[0]}")"
+
+. "${tw_tasks_dir}/debian"
+. "${tw_tasks_dir}/fedora"
+. "${tw_tasks_dir}/arch"
+
 tw_task_set_hostname () {
     tw_log "Current hostname is '${HOSTNAME}'"
 

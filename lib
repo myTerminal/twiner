@@ -112,6 +112,18 @@ tw_execute () {
     "${@}"
 }
 
+# Function to eval and then execute commands
+tw_execute_eval () {
+    if [ "${tw_mode}" = "simulate" ]; then
+        tw_log "<Executing> ${@}"
+        return;
+    elif [ "${tw_mode}" = "debug" ]; then
+        tw_log "<Executing> ${@}"
+    fi
+
+    eval "${@}"
+}
+
 # Function to execute the right function based on platform
 tw_execute_based_on_platform () {
     if [ $(command -v apt) ]; then

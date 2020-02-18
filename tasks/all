@@ -37,6 +37,8 @@ tw_task_create_users () {
                                   "User could not be created!"
 
     tw_execute sudo passwd "${tw_temp_username}"
+
+    tw_log "You still need to edit /etc/sudoers with 'visudo' command for this user to be able to run sudo commands."
 }
 
 # Function to change shell of a particular user

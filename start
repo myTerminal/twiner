@@ -7,13 +7,15 @@
 clear
 while true
 do
+    tw_gather_system_information
+
     tw_menu_title "Please select a task to perform:"
     tw_menu_option "h" "Set hostname"
     tw_menu_option "u" "Create users"
     tw_menu_option "s" "Change user shell"
     tw_menu_option "k" "Generate SSH key"
     tw_menu_option "r" "Add additional software sources"
-    tw_menu_option "g" "Setup GUI"
+    tw_menu_option "g" "Setup GUI" "${tw_display_available_p}"
     tw_menu_option "d" "Install desktop environment"
     tw_menu_option "q" "Quit"
 

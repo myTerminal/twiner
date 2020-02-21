@@ -25,7 +25,11 @@ tw_menu_title () {
 
 # Function to log a menu item
 tw_menu_option () {
-    echo -e "${tw_string_prompt_color_start}[${1}]: ${2}${tw_string_prompt_color_end}"
+    if [ "${3}" = false ]; then
+        echo -e "${tw_string_prompt_color_start}[${1}]: ${2} ${tw_string_log_color_start}(suggested)${tw_string_log_color_end}${tw_string_prompt_color_end}"
+    else
+        echo -e "${tw_string_prompt_color_start}[${1}]: ${2}${tw_string_prompt_color_end}"
+    fi
 }
 
 # Function to prompt for a value
@@ -150,4 +154,14 @@ tw_handle_last_command_status () {
 tw_reboot_now () {
     tw_log "Rebooting..."
     tw_execute sudo reboot
+}
+
+# Function to gather information about system state
+tw_gather_system_information () {
+    tw_display_available_p=false
+
+    systemctl status display-manager
+    if [ "$?" -eq "0" ]; then
+        tw_display_available_p=true
+    fi
 }

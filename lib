@@ -158,10 +158,15 @@ tw_reboot_now () {
 
 # Function to gather information about system state
 tw_gather_system_information () {
-    tw_display_available_p=false
+    tw_state_display_available_p=false
+    tw_state_ssh_key_available_p=false
+
+    if [ -d ~/.ssh ]; then
+        tw_state_ssh_key_available_p=true
+    fi
 
     systemctl status display-manager
     if [ "$?" -eq "0" ]; then
-        tw_display_available_p=true
+        tw_state_display_available_p=true
     fi
 }

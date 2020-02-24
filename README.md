@@ -6,19 +6,23 @@ Configuring *YOUR* Linux made easy
 
 ## What is it?
 
-**twiner** is a *bash* script to configure your Linux effortlessly with the help of a menu-driven interface within the terminal. It provides a list of commands, some of which may be used while setting up a freshly installed Linux system while others help save time while performing common tasks through shortcuts instead of having to search for commands online.
+*twiner* is a collection of bash scripts to help you configure Linux effortlessly from within a command terminal. It provides a set of convenience functions for a growing list of commands, some of which may be used while setting up a freshly installed Linux system while others help save time while performing common tasks without the need to refer to man pages of related commands.
 
 ## Supported Platforms
 
 Even though *twiner* may work on any generic Linux system, in its current state, it only contains scripts for the below platforms:
 
 - Arch (and Arch-based distros)
-- Fedora (and variants of Fedora)
-- Debian, Ubuntu and other members of the family
+- Fedora (and other Red Hat like platforms)
+- Ubuntu (and other members of the Debian family)
 
 ## How to use
 
-In order to use *twiner*,
+There are at least two ways one could use *twiner*.
+
+### As a standalone bash program
+
+To use *twiner* directly,
 
 1. Clone the repository on your system
 
@@ -30,17 +34,37 @@ In order to use *twiner*,
 
 Choose a task to perform by hitting the key to the left of a menu item and follow the instructions.
 
+### As a library to consume in your custom scripts
+
+To consume *twiner* as a library,
+
+1. Clone it the way you would for using it in a standalone manner
+
+2. Source the file `load` at the project root
+
+        ./load
+
+The above line sources all assets from *twiner* so that you can use them in your custom scripts.
+
 ### Transparent mode
 
 To be able to see the commands *twiner* runs, use the argument `debug`.
 
     ./start debug
 
+OR
+
+    ./load debug
+
 ### Simulation mode
 
-To just see what commands would be run instead of actually running them, use the argument `simulate`.
+To just see what commands would be run instead of running them, use the argument `simulate`.
 
     ./start simulate
+
+OR
+
+    ./load simulate
 
 ## To-Do
 

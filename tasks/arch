@@ -141,5 +141,5 @@ tw_task_arch_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute sudo pacman -S "${desktop_environment_packages}" --noconfirm
+    tw_execute sudo pacman -S ${desktop_environment_packages} --noconfirm
 }

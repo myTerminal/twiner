@@ -139,5 +139,5 @@ tw_task_debian_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute sudo apt install "${desktop_environment_packages}" -y
+    tw_execute sudo apt install ${desktop_environment_packages} -y
 }

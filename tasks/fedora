@@ -57,11 +57,6 @@ tw_task_fedora_setup_gui () {
 
     tw_log "Installing a desktop environment..."
     tw_task_fedora_install_desktop_environment
-
-    tw_log "Please reboot the system to use the GUI mode"
-    tw_confirm "Reboot now?" \
-               tw_reboot_now \
-               "Reboot skipped."
 }
 
 # Function to install a desktop environment in Fedora

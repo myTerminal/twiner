@@ -16,19 +16,23 @@ Even though *twiner* may work on any generic Linux system, in its current state,
 - Fedora (and other Red Hat like platforms)
 - Ubuntu (and other members of the Debian family)
 
+## Installation
+
+There is no installer for *twiner* as such but you can clone the source code from GitHub.
+
+In a terminal of your choice, type:
+
+    git clone https://github.com/myTerminal/twiner.git
+
+Twiner will be cloned at the current location.
+
 ## How to use
 
-There are at least two ways one could use *twiner*.
+There are at least two ways to use *twiner*.
 
 ### As a standalone bash program
 
-To use *twiner* directly,
-
-1. Clone the repository on your system
-
-        git clone https://github.com/myTerminal/twiner.git
-
-2. Run `start` at the project root
+To use *twiner* as a bash program, run `start` at the project root.
 
         ./start
 
@@ -36,15 +40,15 @@ Choose a task to perform by hitting the key to the left of a menu item and follo
 
 ### As a library to consume in your custom scripts
 
-To consume *twiner* as a library,
-
-1. Clone it the way you would for using it in a standalone manner
-
-2. Source the file `load` at the project root
+To consume *twiner* as a library, source the file `load` at the project root.
 
         ./load
 
 The above line sources all assets from *twiner* so that you can use them in your custom scripts.
+
+## Modes
+
+When used without arguments, *twiner* runs in `default` mode. However, the below two modes are also available.
 
 ### Transparent mode
 

@@ -53,7 +53,7 @@ tw_task_change_user_shell () {
     if [ "${tw_temp_username}" ]; then
         tw_execute sudo usermod -s "${tw_temp_shell}" "${tw_temp_username}"
     else
-        tw_execute sudo usermod -s "${tw_temp_shell}"
+        tw_execute sudo usermod -s "${tw_temp_shell}" ${USER}
     fi
 
     tw_handle_last_command_status "${?}" \

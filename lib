@@ -147,6 +147,7 @@ tw_handle_last_command_status () {
         tw_log "${2}"
     else
         tw_error "${3}"
+        tw_pause "Press any key to continue..."
     fi
 }
 

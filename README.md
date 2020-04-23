@@ -2,7 +2,9 @@
 
 [![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-Configuring *YOUR* Linux made easy
+Configuring and maintaining *YOUR* Linux made easy
+
+> Note: I'm not a Bash expert (at least yet) so please forgive me for scripts that appear verbose or could've been written in a better way.
 
 ## What is it?
 

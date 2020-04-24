@@ -13,6 +13,11 @@ tw_string_error_color_end="\033[0m"
 # Prefix for all text
 tw_label="${tw_string_label_color_start}TWINER: ${tw_string_label_color_end}"
 
+# Function to echo a horizontal separator
+tw_print_separator () {
+    echo -e "${tw_string_label_color_start}\n----------\n${tw_string_label_color_end}"
+}
+
 # Function to log text
 tw_log () {
     echo -e "${tw_label}${tw_string_log_color_start}${@}${tw_string_log_color_end}"

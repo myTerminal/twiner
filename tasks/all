@@ -16,6 +16,8 @@ tw_task_set_hostname () {
     tw_handle_last_command_status "${?}" \
                                   "Hostname set to '${tw_temp}'" \
                                   "Hostname could not be set!"
+
+    tw_print_separator
 }
 
 # Function to create a new user
@@ -39,6 +41,8 @@ tw_task_create_users () {
     tw_execute sudo passwd "${tw_temp_username}"
 
     tw_log "You still need to edit /etc/sudoers with 'visudo' command for this user to be able to run sudo commands."
+
+    tw_print_separator
 }
 
 # Function to change shell of a particular user
@@ -59,6 +63,8 @@ tw_task_change_user_shell () {
     tw_handle_last_command_status "${?}" \
                                   "Shell changed to '${tw_temp_shell}', you may need to re-login to see the changes." \
                                   "Shell could not be changed!"
+
+    tw_print_separator
 }
 
 # Function to generate SSH key
@@ -66,6 +72,8 @@ tw_task_generate_ssh_key () {
     tw_prompt "Enter a comment (could be your email address) for the key:" tw_temp
 
     tw_execute ssh-keygen -t rsa -b 4096 -C "${tw_temp}"
+
+    tw_print_separator
 }
 
 # Function to add additional software repos
@@ -73,6 +81,8 @@ tw_task_add_additional_software_sources () {
     tw_execute_based_on_platform tw_task_debian_add_additional_software_sources \
                                  tw_task_fedora_add_additional_software_sources \
                                  tw_task_arch_add_additional_software_sources
+
+    tw_print_separator
 }
 
 # Function to setup GUI from a CUI environment
@@ -87,6 +97,8 @@ tw_task_setup_gui () {
                    tw_reboot_now \
                    "Reboot skipped."
     fi
+
+    tw_print_separator
 }
 
 # Function to install a desktop environment
@@ -94,4 +106,6 @@ tw_task_install_desktop_environment () {
     tw_execute_based_on_platform tw_task_debian_install_desktop_environment \
                                  tw_task_fedora_install_desktop_environment \
                                  tw_task_arch_install_desktop_environment
+
+    tw_print_separator
 }

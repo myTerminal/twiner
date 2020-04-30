@@ -138,5 +138,9 @@ tw_task_fedora_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute sudo dnf ${tw_install_command_action} ${desktop_environment_packages} -y
+    if [ "${tw_install_command_action}" == "install" ]; then
+        tw_execute sudo dnf ${tw_install_command_action} ${desktop_environment_packages} -y
+    else
+        tw_execute sudo dnf ${tw_install_command_action} "${desktop_environment_packages}" -y
+    fi
 }

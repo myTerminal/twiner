@@ -159,7 +159,7 @@ tw_handle_last_command_status () {
 # Function to reboot the system
 tw_reboot_now () {
     tw_log "Rebooting..."
-    tw_execute sudo reboot
+    tw_execute systemctl reboot
 }
 
 # Function to gather information about system state

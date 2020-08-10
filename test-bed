@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Load resources
+. "$(dirname "${BASH_SOURCE[0]}")/load" "simulate"
+
+# Simluate Executing the supplied command
+tw_execute "${@}"

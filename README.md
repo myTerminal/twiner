@@ -72,6 +72,16 @@ OR
 
     ./load simulate
 
+### Testing custom bash functions
+
+To test (and simulate) your own bash functions, you can use `./test-bed`.
+
+Ex:
+
+    ./test-bed ls -la
+
+`test-bed` will echo the scripts that would otherwise run.
+
 ## To-Do
 
 - Add more commonly used setup tasks

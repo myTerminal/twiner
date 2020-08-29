@@ -2,6 +2,9 @@
 
 # Function to add additional software repos in Arch
 tw_task_arch_add_additional_software_sources () {
+    tw_log "Install Archlinux keyring..."
+    tw_execute sudo pacman -S archlinux-keyring --noconfirm
+
     tw_log "Updating all packages..."
     tw_execute sudo pacman -Syu --noconfirm
 

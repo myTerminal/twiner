@@ -16,6 +16,7 @@ do
     tw_menu_option "k" "Generate SSH key" "${tw_state_ssh_key_available_p}"
     tw_menu_option "r" "Add additional software sources"
     tw_menu_option "g" "Setup GUI" "${tw_state_display_available_p}"
+    tw_menu_option "l" "Change login screen (display manager)"
     tw_menu_option "d" "Install desktop environment"
     tw_menu_option "q" "Quit"
 
@@ -45,6 +46,10 @@ do
 
         g | G)
             tw_task_setup_gui
+            ;;
+
+        l | L)
+            tw_task_install_display_manager
             ;;
 
         d | D)

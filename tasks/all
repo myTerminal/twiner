@@ -101,6 +101,15 @@ tw_task_setup_gui () {
     tw_print_separator
 }
 
+# Function to install a display manager
+tw_task_install_display_manager () {
+    tw_execute_based_on_platform tw_task_debian_install_display_manager \
+                                 tw_task_fedora_install_display_manager \
+                                 tw_task_arch_install_display_manager
+
+    tw_print_separator
+}
+
 # Function to install a desktop environment
 tw_task_install_desktop_environment () {
     tw_execute_based_on_platform tw_task_debian_install_desktop_environment \

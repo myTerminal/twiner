@@ -14,7 +14,7 @@ tw_task_fedora_add_additional_software_sources () {
 # Function to setup GUI from a CUI environment in Fedora
 tw_task_fedora_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute sudo dnf install xorg-x11-server-Xorg xorg-x11-apps xorg-x11-init -y
+    tw_execute sudo dnf install xorg-x11-server-Xorg xorg-x11-apps xorg-x11-xinit -y
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"

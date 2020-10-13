@@ -24,6 +24,11 @@ tw_task_debian_setup_gui () {
     tw_task_debian_install_desktop_environment
 }
 
+# Function to install a display server in Debian
+tw_task_debian_install_display_server () {
+    tw_execute sudo apt install xorg xinit -y
+}
+
 # Function to install graphic drivers in Debian
 tw_task_debian_install_graphic_drivers () {
     tw_menu_title "Please choose your graphics card:"
@@ -53,11 +58,6 @@ tw_task_debian_install_graphic_drivers () {
     esac
 
     tw_execute sudo apt install "${graphics_driver}" -y
-}
-
-# Function to install a display server in Debian
-tw_task_debian_install_display_server () {
-    tw_execute sudo apt install xorg xinit -y
 }
 
 # Function to install a display manager in Debian

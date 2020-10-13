@@ -20,7 +20,9 @@ tw_task_fedora_setup_gui () {
     tw_task_fedora_install_graphic_drivers
 
     tw_log "Installing a display manager..."
-    tw_task_fedora_install_display_manager
+    tw_confirm "Install a display manager and set graphical mode on startup?" \
+               tw_task_fedora_install_display_manager \
+               "Display manager not installed, please use ~/.xinitrc to start graphical mode on demand."
 
     tw_log "Installing a desktop environment..."
     tw_task_fedora_install_desktop_environment

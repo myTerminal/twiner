@@ -17,6 +17,20 @@ tw_task_fedora_setup_gui () {
     tw_task_fedora_install_display_server
 
     tw_log "Installing graphics driver(s)..."
+    tw_task_fedora_install_graphic_drivers
+
+    tw_log "Installing a display manager..."
+    tw_task_fedora_install_display_manager
+
+    tw_log "Enabling graphical mode..."
+    tw_execute systemctl set-default graphical.target
+
+    tw_log "Installing a desktop environment..."
+    tw_task_fedora_install_desktop_environment
+}
+
+# Function to install graphic drivers in Fedora
+tw_task_fedora_install_graphic_drivers () {
     tw_menu_title "Please choose your graphics card:"
     tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
     tw_menu_option "a" "AMD"
@@ -44,15 +58,6 @@ tw_task_fedora_setup_gui () {
     esac
 
     tw_execute sudo dnf install "${graphics_driver}" -y
-
-    tw_log "Installing a display manager..."
-    tw_task_fedora_install_display_manager
-
-    tw_log "Enabling graphical mode..."
-    tw_execute systemctl set-default graphical.target
-
-    tw_log "Installing a desktop environment..."
-    tw_task_fedora_install_desktop_environment
 }
 
 # Function to install a display server in Fedora

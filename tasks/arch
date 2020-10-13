@@ -28,6 +28,22 @@ tw_task_arch_setup_gui () {
     tw_task_arch_install_display_server
 
     tw_log "Installing graphics driver(s)..."
+    tw_task_arch_install_graphic_drivers
+
+    tw_log "Installing a display manager..."
+    tw_task_arch_install_display_manager
+
+    tw_log "Installing a desktop environment..."
+    tw_task_arch_install_desktop_environment
+}
+
+# Function to install a display server in Arch
+tw_task_arch_install_display_server () {
+    tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
+}
+
+# Function to install graphic drivers in Arch
+tw_task_arch_install_graphic_drivers () {
     tw_menu_title "Please choose your graphics card:"
     tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
     tw_menu_option "a" "AMD"
@@ -55,17 +71,6 @@ tw_task_arch_setup_gui () {
     esac
 
     tw_execute sudo pacman -S "${graphics_driver}" --noconfirm
-
-    tw_log "Installing a display manager..."
-    tw_task_arch_install_display_manager
-
-    tw_log "Installing a desktop environment..."
-    tw_task_arch_install_desktop_environment
-}
-
-# Function to install a display server in Arch
-tw_task_arch_install_display_server () {
-    tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
 }
 
 # Function to install a display manager in Arch

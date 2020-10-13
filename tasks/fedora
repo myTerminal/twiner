@@ -22,9 +22,6 @@ tw_task_fedora_setup_gui () {
     tw_log "Installing a display manager..."
     tw_task_fedora_install_display_manager
 
-    tw_log "Enabling graphical mode..."
-    tw_execute systemctl set-default graphical.target
-
     tw_log "Installing a desktop environment..."
     tw_task_fedora_install_desktop_environment
 }
@@ -93,6 +90,8 @@ tw_task_fedora_install_display_manager () {
     tw_execute sudo dnf install ${dm_package_name} -y
     tw_execute sudo systemctl disable display-manager.service
     tw_execute sudo systemctl enable ${dm_service_name}
+
+    tw_execute systemctl set-default graphical.target
 }
 
 # Function to install a desktop environment in Fedora

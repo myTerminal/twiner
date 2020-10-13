@@ -25,7 +25,7 @@ tw_task_arch_add_additional_software_sources () {
 # Function to setup GUI from a CUI environment in Arch
 tw_task_arch_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
+    tw_task_arch_install_display_server
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
@@ -61,6 +61,11 @@ tw_task_arch_setup_gui () {
 
     tw_log "Installing a desktop environment..."
     tw_task_arch_install_desktop_environment
+}
+
+# Function to install a display server in Arch
+tw_task_arch_install_display_server () {
+    tw_execute sudo pacman -S xorg-server xorg-apps xorg-xinit --noconfirm
 }
 
 # Function to install a display manager in Arch

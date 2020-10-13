@@ -12,7 +12,7 @@ tw_task_debian_add_additional_software_sources () {
 # Function to setup GUI from a CUI environment in Debian
 tw_task_debian_setup_gui () {
     tw_log "Installing display server..."
-    tw_execute sudo apt install xorg xinit -y
+    tw_task_debian_install_display_server
 
     tw_log "Installing graphics driver(s)..."
     tw_menu_title "Please choose your graphics card:"
@@ -48,6 +48,11 @@ tw_task_debian_setup_gui () {
 
     tw_log "Installing a desktop environment..."
     tw_task_debian_install_desktop_environment
+}
+
+# Function to install a display server in Debian
+tw_task_debian_install_display_server () {
+    tw_execute sudo apt install xorg xinit -y
 }
 
 # Function to install a display manager in Debian

@@ -11,15 +11,15 @@ tw_task_arch_add_additional_software_sources () {
     tw_log "Installing git..."
     tw_execute sudo pacman -S git --noconfirm
 
-    tw_log "Installing yay for AUR packages..."
+    tw_log "Installing paru for AUR packages..."
     tw_execute mkdir temp
-    tw_execute git clone https://aur.archlinux.org/yay.git ./temp/yay
-    tw_execute cd ./temp/yay
+    tw_execute git clone https://aur.archlinux.org/paru.git ./temp/paru
+    tw_execute cd ./temp/paru
     tw_execute makepkg -si --noconfirm
     tw_execute cd ../../
     tw_execute rm -rf ./temp
 
-    tw_log "You may now use 'yay' to install packages from AUR"
+    tw_log "You may now use 'paru' to install packages from AUR"
 }
 
 # Function to setup GUI from a CUI environment in Arch

@@ -2,6 +2,9 @@
 
 # Function to add additional software repos in Debian
 tw_task_debian_add_additional_software_sources () {
+    tw_log "Adding 32-bit support..."
+    tw_execute sudo dpkg --add-architecture i386
+
     tw_log "Updating and upgrading system..."
     tw_execute sudo apt update -y
     tw_execute sudo apt upgrade -y

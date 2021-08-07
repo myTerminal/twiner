@@ -4,7 +4,7 @@
 
 Configuring and maintaining *YOUR* Linux made easy
 
-> Note: I'm not a Bash expert (at least yet) so please forgive me for scripts that appear verbose or could've been written in a better way.
+> Note: I'm not a Bash expert (at least yet) so please forgive me for scripts that appear verbose or inefficient.
 
 ## What is it?
 
@@ -17,6 +17,7 @@ Even though *twiner* may work on any generic Linux system, in its current state,
 - Arch (and Arch-based distros)
 - Fedora (and other Red Hat like platforms)
 - Ubuntu (and other members of the Debian family)
+- Void Linux (work in progress)
 
 ## Installation
 

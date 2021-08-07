@@ -141,6 +141,8 @@ tw_execute_based_on_platform () {
         "${2}"
     elif [ $(command -v pacman) ]; then
         "${3}"
+    elif [ $(command -v xbps-query) ]; then
+        "${4}"
     else
         tw_abort_because "An unknown Linux distribution found!"
     fi

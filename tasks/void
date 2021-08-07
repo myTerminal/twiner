@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Function to add additional software repos in Void
+tw_task_void_add_additional_software_sources () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}
+
+# Function to setup GUI from a CUI environment in Void
+tw_task_void_setup_gui () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}
+
+# Function to install a display server in Void
+tw_task_void_install_display_server () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}
+
+# Function to install graphic drivers in Void
+tw_task_void_install_graphic_drivers () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}
+
+# Function to install a display manager in Void
+tw_task_void_install_display_manager () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}
+
+# # Function to install a desktop environment in Void
+tw_task_void_install_desktop_environment () {
+    # TODO: (entering-the-void) Implement
+    tw_error "Not implemented!"
+}

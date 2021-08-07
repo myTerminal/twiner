@@ -5,6 +5,7 @@ tw_tasks_dir="$(dirname "${BASH_SOURCE[0]}")"
 . "${tw_tasks_dir}/debian"
 . "${tw_tasks_dir}/fedora"
 . "${tw_tasks_dir}/arch"
+. "${tw_tasks_dir}/void"
 
 # Function to set hostname
 tw_task_set_hostname () {
@@ -80,7 +81,8 @@ tw_task_generate_ssh_key () {
 tw_task_add_additional_software_sources () {
     tw_execute_based_on_platform tw_task_debian_add_additional_software_sources \
                                  tw_task_fedora_add_additional_software_sources \
-                                 tw_task_arch_add_additional_software_sources
+                                 tw_task_arch_add_additional_software_sources \
+                                 tw_task_void_add_additional_software_sources
 
     tw_print_separator
 }
@@ -89,7 +91,8 @@ tw_task_add_additional_software_sources () {
 tw_task_setup_gui () {
     tw_execute_based_on_platform tw_task_debian_setup_gui \
                                  tw_task_fedora_setup_gui \
-                                 tw_task_arch_setup_gui
+                                 tw_task_arch_setup_gui \
+                                 tw_task_void_setup_gui
 
     if [ !"${1}" = false ]; then
         tw_log "Please reboot the system to use the GUI mode"
@@ -105,7 +108,8 @@ tw_task_setup_gui () {
 tw_task_install_display_manager () {
     tw_execute_based_on_platform tw_task_debian_install_display_manager \
                                  tw_task_fedora_install_display_manager \
-                                 tw_task_arch_install_display_manager
+                                 tw_task_arch_install_display_manager \
+                                 tw_task_void_install_display_manager
 
     tw_print_separator
 }
@@ -114,7 +118,8 @@ tw_task_install_display_manager () {
 tw_task_install_desktop_environment () {
     tw_execute_based_on_platform tw_task_debian_install_desktop_environment \
                                  tw_task_fedora_install_desktop_environment \
-                                 tw_task_arch_install_desktop_environment
+                                 tw_task_arch_install_desktop_environment \
+                                 tw_task_void_install_desktop_environment
 
     tw_print_separator
 }

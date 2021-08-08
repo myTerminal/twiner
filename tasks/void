@@ -71,8 +71,31 @@ tw_task_void_install_graphic_drivers () {
 
 # Function to install a display manager in Void
 tw_task_void_install_display_manager () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+    tw_menu_title "Please select a display manager:"
+    tw_menu_option "g" "GNOME Display Manager (GDM)"
+    tw_menu_option "s" "Simple Desktop Display Manager (SDDM)"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        g | G)
+            dm_package_name="gdm"
+            dm_service_name="gdm"
+            ;;
+
+        s | S)
+            dm_package_name="sddm"
+            dm_service_name="sddm"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with GDM..."
+            dm_package_name="gdm"
+            dm_service_name="gdm"
+            ;;
+    esac
+
+    tw_execute sudo xbps-install -Sy ${dm_package_name}
+    tw_execute sudo ln -s /etc/sv/${dm_service_name} /var/service
 }
 
 # # Function to install a desktop environment in Void

@@ -14,9 +14,9 @@ Configuring and maintaining *YOUR* Linux made easy
 
 Even though *twiner* may work on any generic Linux system, in its current state, it only contains scripts for the below platforms:
 
-- Arch (and Arch-based distros)
-- Fedora (and other Red Hat like platforms)
 - Ubuntu (and other members of the Debian family)
+- Fedora (and other Red Hat like platforms)
+- Arch (and Arch-based distros)
 - Void Linux (work in progress)
 
 ## Installation

@@ -95,6 +95,7 @@ tw_task_void_install_display_manager () {
     esac
 
     tw_execute sudo xbps-install -Sy ${dm_package_name}
+    tw_execute sudo rm /var/service/{gdm,sddm}
     tw_execute sudo ln -s /etc/sv/${dm_service_name} /var/service
 }
 

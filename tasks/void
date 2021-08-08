@@ -106,8 +106,79 @@ tw_task_void_start_display_manager_service() {
     tw_execute sudo ln -s /etc/sv/${dm_service_name} /var/service
 }
 
-# # Function to install a desktop environment in Void
+# Function to install a desktop environment in Void
 tw_task_void_install_desktop_environment () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+    tw_menu_title "Please select a desktop environment:"
+    tw_menu_option "k" "KDE Plasma"
+    tw_menu_option "g" "Gnome"
+    tw_menu_option "c" "Cinnamon"
+    tw_menu_option "b" "Budgie"
+    tw_menu_option "m" "MATE"
+    tw_menu_option "x" "XFCE"
+    tw_menu_option "l" "LXDE"
+    tw_menu_option "q" "LXQT"
+    tw_menu_option "d" "Deepin"
+    tw_menu_option "p" "Pantheon"
+    tw_menu_option "e" "Enlightenment"
+    tw_menu_option "i" "i3"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        k | K)
+            desktop_environment_packages="kde5 kde5-baseapps"
+            ;;
+
+        g | G)
+            desktop_environment_packages="gnome gnome-apps"
+            ;;
+
+        c | C)
+            desktop_environment_packages="cinnamon"
+            ;;
+
+        b | B)
+            desktop_environment_packages="budgie-desktop budgie-screensaver"
+            ;;
+
+        m | M)
+            desktop_environment_packages="mate mate-extra"
+            ;;
+
+        x | X)
+            desktop_environment_packages="xfce4"
+            ;;
+
+        l | L)
+            desktop_environment_packages="lxde"
+            ;;
+
+        q | Q)
+            desktop_environment_packages="lxqt"
+            ;;
+
+        d | D)
+            # TODO: The package is not available, installation will fail
+            desktop_environment_packages="deepin deepin-extra"
+            ;;
+
+        p | P)
+            # TODO: The package is not available, installation will fail
+            desktop_environment_packages="pantheon"
+            ;;
+
+        e | E)
+            desktop_environment_packages="enlightenment terminology"
+            ;;
+
+        i | I)
+            desktop_environment_packages="i3 i3lock dmenu"
+            ;;
+
+        *)
+            tw_log "Invalid option selected, proceeding with KDE plasma..."
+            desktop_environment_packages="plasma kde-applications"
+            ;;
+    esac
+
+    tw_execute sudo xbps-install -Sy ${desktop_environment_packages} --noconfirm
 }

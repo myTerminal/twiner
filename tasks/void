@@ -35,8 +35,7 @@ tw_task_void_setup_gui () {
 
 # Function to install a display server in Void
 tw_task_void_install_display_server () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+    tw_execute sudo xbps-install -Sy xorg
 }
 
 # Function to install graphic drivers in Void

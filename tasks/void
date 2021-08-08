@@ -2,8 +2,18 @@
 
 # Function to add additional software repos in Void
 tw_task_void_add_additional_software_sources () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+    tw_log "Adding nonfree and multilib repos..."
+    tw_execute sudo xbps-install -Sy void-repo-nonfree void-repo-multilib void-multilib-nonfree
+    tw_log "Additional software repos have been added!"
+
+    tw_log "Updating all packages..."
+    tw_execute sudo xbps-install -Syu
+    tw_log "System is now updated!"
+
+    tw_log "Setting up flatpak..."
+    tw_execute sudo xbps-install -Sy flatpak
+    tw_execute flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    tw_log "flatpak setup complete!"
 }
 
 # Function to setup GUI from a CUI environment in Void

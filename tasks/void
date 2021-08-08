@@ -18,8 +18,19 @@ tw_task_void_add_additional_software_sources () {
 
 # Function to setup GUI from a CUI environment in Void
 tw_task_void_setup_gui () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+    tw_log "Installing display server..."
+    tw_task_void_install_display_server
+
+    tw_log "Installing graphics driver(s)..."
+    tw_task_void_install_graphic_drivers
+
+    tw_log "Installing a display manager..."
+    tw_confirm "Install a display manager and set graphical mode on startup?" \
+               tw_task_void_install_display_manager \
+               "Display manager not installed, please use ~/.xinitrc to start graphical mode on demand."
+
+    tw_log "Installing a desktop environment..."
+    tw_task_void_install_desktop_environment
 }
 
 # Function to install a display server in Void

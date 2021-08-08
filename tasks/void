@@ -40,8 +40,33 @@ tw_task_void_install_display_server () {
 
 # Function to install graphic drivers in Void
 tw_task_void_install_graphic_drivers () {
-    # TODO: (entering-the-void) Implement
-    tw_error "Not implemented!"
+   tw_menu_title "Please choose your graphics card:"
+    tw_menu_option "0" "Vesa/Generic (also suitable for virtual machines)"
+    tw_menu_option "a" "AMD"
+    tw_menu_option "i" "Intel"
+    tw_menu_option "n" "Nvidia"
+    tw_prompt_for_character "" tw_temp
+
+    case "${tw_temp}" in
+        a | A)
+            graphics_driver_packages="linux-firmware-amd mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk xf86-video-amdgpu mesa-vaapi mesa-vdpau"
+            ;;
+
+        i | I)
+            graphics_driver_packages="linux-firmware-intel mesa-dri vulkan-loader mesa-vulkan-intel intel-video-accel"
+            ;;
+
+        n | N)
+            graphics_driver_packages="xf86-video-nouveau"
+            ;;
+
+        0 | *)
+            tw_log "Proceeding with vesa driver..."
+            graphics_driver_packages="xf86-video-vesa"
+            ;;
+    esac
+
+    tw_execute sudo xbps-install -Sy ${graphics_driver_packages}
 }
 
 # Function to install a display manager in Void

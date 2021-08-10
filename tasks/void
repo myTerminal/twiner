@@ -180,5 +180,5 @@ tw_task_void_install_desktop_environment () {
             ;;
     esac
 
-    tw_execute sudo xbps-install -Sy ${desktop_environment_packages} --noconfirm
+    tw_execute sudo xbps-install -Sy ${desktop_environment_packages}
 }

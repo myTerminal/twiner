@@ -2,50 +2,47 @@
 
 # Colors for different kinds of text
 tw_string_prompt_color_start="\033[1;36m"
-tw_string_prompt_color_end="\033[0m"
 tw_string_log_color_start="\033[1;33m"
-tw_string_log_color_end="\033[0m"
 tw_string_label_color_start="\033[1;32m"
-tw_string_label_color_end="\033[0m"
 tw_string_error_color_start="\033[1;31m"
-tw_string_error_color_end="\033[0m"
+tw_string_color_end="\033[0m"
 
 # Prefix for all text
-tw_label="${tw_string_label_color_start}TW> ${tw_string_label_color_end}"
+tw_label="${tw_string_label_color_start}TW> ${tw_string_color_end}"
 
 # Function to echo a horizontal separator
 tw_print_separator () {
-    echo -e "${tw_string_label_color_start}\n----------\n${tw_string_label_color_end}"
+    echo -e "${tw_string_label_color_start}\n----------\n${tw_string_color_end}"
 }
 
 # Function to log text
 tw_log () {
-    echo -e "${tw_label}${tw_string_log_color_start}${@}${tw_string_log_color_end}"
+    echo -e "${tw_label}${tw_string_log_color_start}${@}${tw_string_color_end}"
 }
 
 # Function to log a menu title
 tw_menu_title () {
-    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_color_end}"
 }
 
 # Function to log a menu item
 tw_menu_option () {
     if [ "${3}" = false ]; then
-        echo -e "${tw_string_prompt_color_start}[${1}]: ${2} ${tw_string_log_color_start}(suggested)${tw_string_log_color_end}${tw_string_prompt_color_end}"
+        echo -e "${tw_string_prompt_color_start}[${1}]: ${2} ${tw_string_log_color_start}(suggested)${tw_string_color_end}${tw_string_color_end}"
     else
-        echo -e "${tw_string_prompt_color_start}[${1}]: ${2}${tw_string_prompt_color_end}"
+        echo -e "${tw_string_prompt_color_start}[${1}]: ${2}${tw_string_color_end}"
     fi
 }
 
 # Function to prompt for a value
 tw_prompt () {
-    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_color_end}"
     read -p "> " ${2}
 }
 
 # Function to prompt for a character
 tw_prompt_for_character () {
-    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_prompt_color_end}"
+    echo -e "${tw_label}${tw_string_prompt_color_start}${1}${tw_string_color_end}"
     read -n1 -r -p "> " "${2}"
     echo ""
 }
@@ -94,7 +91,7 @@ tw_confirm_and_source_else () {
 
 # Function to throw an error
 tw_error () {
-    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${@}${tw_string_error_color_end}"
+    echo -e "${tw_label}${tw_string_error_color_start}ERROR: ${@}${tw_string_color_end}"
 }
 
 # Function to abort with exit-code 0

@@ -95,7 +95,8 @@ tw_task_void_install_display_manager () {
     esac
 
     tw_execute sudo xbps-install -Sy ${dm_package_name}
-    tw_confirm "Switch display manager services? This might affect the current session." \
+    tw_warning "Switching the display manager might affect the current session."
+    tw_confirm "Switch display manager services?" \
                tw_task_void_start_display_manager_service \
                "${dm_package_name} service not enabled. Please disable any active display manager services and then run 'ln -s /etc/sv/${dm_service_name} /var/service'."
 }

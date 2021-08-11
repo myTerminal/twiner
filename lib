@@ -4,6 +4,7 @@
 tw_string_prompt_color_start="\033[1;36m"
 tw_string_log_color_start="\033[1;33m"
 tw_string_label_color_start="\033[1;32m"
+tw_string_warning_color_start="\033[1;35m"
 tw_string_error_color_start="\033[1;31m"
 tw_string_color_end="\033[0m"
 
@@ -87,6 +88,11 @@ tw_confirm_and_source_else () {
     else
         . "${3}"
     fi
+}
+
+# Function to log warning
+tw_warning () {
+    echo -e "${tw_label}${tw_string_warning_color_start}WARNING: ${@}${tw_string_color_end}"
 }
 
 # Function to throw an error

@@ -16,7 +16,7 @@ tw_task_fedora_add_additional_software_sources () {
 
     tw_log "Setting up flatpak..."
     tw_execute sudo dnf install flatpak -y
-    tw_execute flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    tw_execute sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     tw_log "flatpak setup complete!"
 }
 

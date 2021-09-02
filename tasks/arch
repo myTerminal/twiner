@@ -27,7 +27,7 @@ tw_task_arch_add_additional_software_sources () {
 
     tw_log "Setting up flatpak..."
     tw_execute sudo pacman -S flatpak --noconfirm
-    tw_execute flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    tw_execute sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     tw_log "flatpak setup complete!"
 }
 

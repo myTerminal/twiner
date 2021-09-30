@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Misc variables
+tw_platform="Linux"
+
 # Colors for different kinds of text
 tw_string_prompt_color_start="\033[1;36m"
 tw_string_log_color_start="\033[1;33m"
@@ -10,6 +13,21 @@ tw_string_color_end="\033[0m"
 
 # Prefix for all text
 tw_label="${tw_string_label_color_start}TW> ${tw_string_color_end}"
+
+# Function to determine the current platform and store it in tw_platform
+tw_determine_platform () {
+    if [[ -f /bedrock/etc/bedrock-release ]]; then
+        tw_platform="Bedrock"
+    elif [ $(command -v xbps-query) ]; then
+        tw_platform="Void"
+    elif [ $(command -v pacman) ]; then
+        tw_platform="Arch"
+    elif [ $(command -v dnf) ]; then
+        tw_platform="Fedora"
+    elif [ $(command -v apt) ]; then
+        tw_platform="Debian"
+    fi
+}
 
 # Function to echo a horizontal separator
 tw_print_separator () {

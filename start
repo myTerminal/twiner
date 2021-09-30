@@ -9,7 +9,7 @@ while true
 do
     tw_gather_system_information
 
-    tw_menu_title "Please select a task to perform:"
+    tw_menu_title "($tw_platform) Please select a task to perform:"
     tw_menu_option "h" "Set hostname"
     tw_menu_option "u" "Create users"
     tw_menu_option "s" "Change user shell"

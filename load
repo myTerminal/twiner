@@ -9,3 +9,6 @@ tw_root_dir="$(dirname "${BASH_SOURCE[0]}")"
 
 # Set mode from argument
 tw_mode="${1}"
+
+# Determine platform
+tw_determine_platform

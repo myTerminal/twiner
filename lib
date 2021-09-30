@@ -156,17 +156,27 @@ tw_execute_eval () {
 
 # Function to execute the right function based on platform
 tw_execute_based_on_platform () {
-    if [ $(command -v apt) ]; then
-        "${1}"
-    elif [ $(command -v dnf) ]; then
-        "${2}"
-    elif [ $(command -v pacman) ]; then
-        "${3}"
-    elif [ $(command -v xbps-query) ]; then
-        "${4}"
-    else
-        tw_abort_because "An unknown Linux distribution found!"
-    fi
+    case "${tw_platform}" in
+        Debian)
+            "${1}"
+            ;;
+
+        Fedora)
+            "${2}"
+            ;;
+
+        Arch)
+            "${3}"
+            ;;
+
+        Void)
+            "${4}"
+            ;;
+
+        *)
+            tw_abort_because "An unknown Linux distribution found!"
+            ;;
+    esac
 }
 
 # Function to handle last commands success/failure

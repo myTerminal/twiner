@@ -10,6 +10,22 @@ tw_task_void_add_additional_software_sources () {
     tw_execute sudo xbps-install -Syu
     tw_log "System is now updated!"
 
+    tw_confirm "Install snapd?" \
+               tw_task_void_setup_snapd \
+               "Installation of snapd skipped."
+
+    tw_confirm "Install flatpak?" \
+               tw_task_void_setup_flatpak \
+               "Installation of flatpak skipped."
+}
+
+# Function to install and set up snapd in Void
+tw_task_void_setup_snapd () {
+    tw_error "Cannot install snapd on Void!"
+}
+
+# Function to install and set up flatpak in Void
+tw_task_void_setup_flatpak () {
     tw_log "Setting up flatpak..."
     tw_execute sudo xbps-install -Sy flatpak
     tw_execute sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

@@ -10,11 +10,25 @@ tw_task_debian_add_additional_software_sources () {
     tw_execute sudo apt upgrade -y
     tw_log "System is now updated!"
 
+    tw_confirm "Install snapd?" \
+               tw_task_debian_setup_snapd \
+               "Installation of snapd skipped."
+
+    tw_confirm "Install flatpak?" \
+               tw_task_debian_setup_flatpak \
+               "Installation of flatpak skipped."
+}
+
+# Function to install and set up snapd in Debian
+tw_task_debian_setup_snapd () {
     tw_log "Installing snapcraft..."
     tw_execute sudo apt install snapd -y
     tw_execute sudo snap install core
     tw_log "snapd installed!"
+}
 
+# Function to install and set up flatpak in Debian
+tw_task_debian_setup_flatpak () {
     tw_log "Setting up flatpak..."
     tw_execute sudo apt install flatpak -y
     tw_execute sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

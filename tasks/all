@@ -26,14 +26,8 @@ tw_task_create_users () {
     tw_prompt "Enter a username:" tw_temp_username
     tw_prompt "Enter the full name of the user:" tw_temp_full_name
 
-    cat /etc/shells
-    tw_prompt "Select the default shell for the user (choose an option from the list or leave blank to use the default):" tw_temp_shell
-
-    if [ "${tw_temp_shell}" ]; then
-        tw_execute sudo useradd "${tw_temp_username}" -m -g users -c "${tw_temp_full_name}" -s "${tw_temp_shell}"
-    else
-        tw_execute sudo useradd "${tw_temp_username}" -m -g users -c "${tw_temp_full_name}"
-    fi
+    tw_temp_shell=$(cat /etc/shells | fzf --prompt "Select the default shell for the user:")
+    tw_execute sudo useradd "${tw_temp_username}" -m -g users -c "${tw_temp_full_name}" -s "${tw_temp_shell}"
 
     tw_handle_last_command_status "${?}" \
                                   "User '${tw_temp_username}' successfully created!" \

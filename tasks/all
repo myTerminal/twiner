@@ -46,8 +46,7 @@ tw_task_change_user_shell () {
 
     tw_prompt "Enter the username for the user (default: ${USER}):" tw_temp_username
 
-    cat /etc/shells
-    tw_prompt "Select a shell from the above list:" tw_temp_shell
+    tw_temp_shell=$(cat /etc/shells | fzf --prompt "Select the default shell for the user:")
 
     if [ "${tw_temp_username}" ]; then
         tw_execute sudo usermod -s "${tw_temp_shell}" "${tw_temp_username}"

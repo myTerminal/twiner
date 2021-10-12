@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Load resources
+. "$(dirname "${BASH_SOURCE[0]}")/load"
+
+tw_log "Pulling updates from git..."
+git pull origin master
+tw_log "twiner is now up-to-date!"
+

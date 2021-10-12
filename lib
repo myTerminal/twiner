@@ -204,9 +204,9 @@ tw_gather_system_information () {
         tw_state_ssh_key_available_p=true
     fi
 
-    # TODO: Implement check for other init systems, atleast runit
-    systemctl status display-manager
-    if [ "$?" -eq "0" ]; then
+    if [ -f /etc/systemd/system/display-manager.service ] ||
+           [ -f /var/service/sddm ] ||
+           [ -f /var/service/gdm ]; then
         tw_state_display_available_p=true
     fi
 }

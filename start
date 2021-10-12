@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Load resources
-. "$(dirname "${BASH_SOURCE[0]}")/load" "${1}"
+. "$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)/load" "${1}"
 
 # Display main menu
 clear

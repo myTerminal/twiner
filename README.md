@@ -14,26 +14,36 @@ Configuring and maintaining *YOUR* Linux made easy
 
 Even though *twiner* may work on any generic Linux system, in its current state, it only contains scripts for the below platforms:
 
-- Ubuntu (and other members of the Debian family)
-- Fedora (and other Red Hat like platforms)
+- Debian/Ubuntu (and distros based on Debian and Ubuntu)
+- Fedora (and other RedHat- like platforms)
 - Arch (and Arch-based distros)
 - Void Linux (work in progress)
 
-## Installation
+## Obtaining
 
-There is no installer for *twiner* as such but you can clone the source code from GitHub.
+*twiner* can be obtained from GitHub using `git`:
 
 In a terminal of your choice, type:
 
     git clone https://github.com/myTerminal/twiner.git
 
-Twiner will be cloned at the current location.
+*twiner* will be cloned at the current location.
 
 ## How to use
 
-There are at least two ways to use *twiner*.
+There are three ways to use *twiner*:
 
-### As a standalone bash program
+### 1. As an installed package
+
+To install *twiner* as a package on your system, simply run the below at the root of the project directory:
+
+    make install
+
+You may be asked for `root` password and *twiner* will then be available in the form of two commands.
+
+To use *twiner*, you may run `twiner-start` from the terminal, and to update it, you may run `twiner-update`.
+
+### 2. As a standalone bash program
 
 To use *twiner* as a bash program, run `start` at the project root.
 
@@ -41,7 +51,7 @@ To use *twiner* as a bash program, run `start` at the project root.
 
 Choose a task to perform by hitting the key to the left of a menu item and follow the instructions.
 
-### As a library to consume in your custom scripts
+### 3. As a library to consume in your custom scripts
 
 To consume *twiner* as a library, source the file `load` at the project root.
 
@@ -53,7 +63,7 @@ The above line sources all assets from *twiner* so that you can use them in your
 
 When used without arguments, *twiner* runs in `default` mode. However, the below two modes are also available.
 
-### Transparent mode
+### Transparent (debug) mode
 
 To be able to see the commands *twiner* runs, use the argument `debug`.
 
@@ -73,7 +83,7 @@ OR
 
     ./load simulate
 
-### Testing custom bash functions
+## Testing custom bash functions
 
 To test (and simulate) your own bash functions, you can use `./test-bed`.
 
@@ -86,5 +96,5 @@ Ex:
 ## To-Do
 
 - Add more commonly used setup tasks
-- Add support for more distros
+- Add support for Void Linux
 - Provide more options for installing a display manager

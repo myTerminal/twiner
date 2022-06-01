@@ -2,6 +2,9 @@
 
 # Function to add additional software repos in Void
 tw_task_void_add_additional_software_sources () {
+    tw_log "Updating xbps..."
+    tw_execute sudo xbps-install -Syu xbps
+
     tw_log "Adding nonfree and multilib repos..."
     tw_execute sudo xbps-install -Sy void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
     tw_log "Additional software repos have been added!"

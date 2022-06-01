@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
+# Capture parent directories
+root_directory=$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)
+
 # Load resources
-. "$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)/load"
+. "${root_directory}/load"
 
 tw_log "Pulling updates from git..."
-git pull origin master
+git -C "${root_directory}" pull origin master
 tw_log "twiner is now up-to-date!"
 

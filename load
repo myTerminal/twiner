@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Set root directory
-tw_root_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+if [ $(command -v realpath) ]; then
+    tw_root_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+else
+    tw_root_dir=$(cd "$(dirname $BASH_SOURCE[0])" ; pwd -P)
+fi
 
 # Load resources
 . "${tw_root_dir}/lib"

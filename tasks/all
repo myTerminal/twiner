@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Load tasks for individual platforms
-tw_tasks_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+if [ $(command -v realpath) ]; then
+    tw_tasks_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+else
+    tw_tasks_dir=$(cd "$(dirname $BASH_SOURCE[0])" ; pwd -P)
+fi
 . "${tw_tasks_dir}/debian"
 . "${tw_tasks_dir}/fedora"
 . "${tw_tasks_dir}/arch"

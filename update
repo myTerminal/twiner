@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Capture parent directories
-root_directory=$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)
+if [ $(command -v realpath) ]; then
+    root_directory=$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)
+else
+    root_directory=$(cd "$(dirname $BASH_SOURCE[0])" ; pwd -P)
+fi
 
 # Load resources
 . "${root_directory}/load"

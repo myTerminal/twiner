@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 # Load resources
-. "$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)/load" "simulate"
+if [ $(command -v realpath) ]; then
+    tw_root_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+else
+    tw_root_dir=$(cd "$(dirname $BASH_SOURCE[0])" ; pwd -P)
+fi
+. "${tw_root_dir}/load" "simulate"
 
 # Simluate Executing the supplied command
 tw_execute "${@}"

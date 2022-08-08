@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 # Load resources
-. "$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)/load" "${1}"
+if [ $(command -v realpath) ]; then
+    tw_curr_dir="$(readlink -f "${BASH_SOURCE[0]}" | xargs realpath | xargs dirname)"
+else
+    tw_curr_dir=$(cd "$(dirname $BASH_SOURCE[0])" ; pwd -P)
+fi
+. "${tw_curr_dir}/load" "${1}"
 
 # Display main menu
 clear

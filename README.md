@@ -1,6 +1,7 @@
 # twiner
 
-[![License](https://img.shields.io/github/license/myTerminal/twiner.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/github/license/myTerminal/twiner.svg)](https://opensource.org/licenses/MIT)  
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y5E5GL7)
 
 Configuring and maintaining *YOUR* Linux made easy
 

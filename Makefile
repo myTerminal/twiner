@@ -14,10 +14,15 @@ help:
 
 deps:
 	@echo "Checking for dependencies..."
-ifeq ($(shell command -v fzf),)
-	@echo "Please install 'fzf' as it is required for some features."
-else
+	@echo "Looking for 'fzf'..."
+ifneq ($(shell command -v fzf),)
 	@echo "'fzf' found."
+else
+	@echo "'fzf' not found!"
+	@echo "Attemping to install 'fzf' using Crater..."
+	git clone https://github.com/crater-space/cli /tmp/crater-cli
+	/tmp/crater-cli/crater install fzf
+	rm -rf /tmp/crater-cli
 endif
 
 req: deps

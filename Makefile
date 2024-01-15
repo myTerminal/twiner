@@ -35,7 +35,7 @@ place:
 manpage:
 	@echo "Creating manpage..."
 	mkdir -p $(MANPREFIX)
-	sudo rsync ./man/twiner* $(MANPREFIX)/man1/
+	sudo cp ./man/twiner* $(MANPREFIX)/man1/
 	@echo "Manpage created"
 
 link:
